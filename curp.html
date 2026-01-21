@@ -73,7 +73,10 @@ input,button{
 }
 
 input{
-    autocomplete: off;
+    autocomplete: "new-password";
+    autocorrect: "off";
+    autocapitalize: "off";
+    spellcheck: false;
 }
 
 button{
@@ -145,7 +148,7 @@ td:nth-child(2){
 <h2>Validación por CURP</h2>
 
 <form onsubmit="buscarCURP(); return false;">
-    <input id="curp" placeholder="BIDD971230HASRZM02" autocomplete="off">
+    <input id="curp" placeholder="Escribe tu CURP" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false">
     <button>Consultar</button>
 </form>
 
@@ -207,3 +210,4 @@ function buscarCURP(){
 
 </body>
 </html>
+
