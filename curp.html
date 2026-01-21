@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Validación por CURP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f4c81, #1b6ca8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* ===== ENCABEZADO ===== */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+            z-index: 5;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-full {
+            width: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 14px 20px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-content img {
+            height: 56px;
+        }
+
+        .header-text {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #0f4c81;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #1b6ca8;
+        }
+
+        /* ===== TARJETA ===== */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 30px;
+            width: 520px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            margin-top: 140px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #0f4c81;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0c3c66;
+        }
+
+        /* ===== RESULTADOS ===== */
+        .results {
+            display: none;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        th {
+            font-weight: 600;
+        }
+
+        td:nth-child(2) {
+            text-align: left;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        /* ===== MODAL ===== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(14px);
+            border-radius: 14px;
+            padding: 25px;
+            width: 360px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .glass-card {
+                width: 92%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ENCABEZADO -->
+<div class="top-bar">
+    <div class="header-full">
+        <div class="header-content">
+            <img src="https://i.imgur.com/ZXJU2L5.png">
+            <div class="header-text">
+                <div class="title">Centro Regional de Educación Normal</div>
+                <div class="subtitle">Javier Rojo Gómez</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="glass-card">
+    <h1>Validación por CURP</h1>
+    <p>Consulta certificados asociados a tu CURP</p>
+
+    <form onsubmit="buscarCURP(); return false;">
+        <input id="curp" placeholder="Ingresa tu CURP">
+        <button type="submit">Consultar</button>
+    </form>
+
+    <div class="results" id="results">
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Curso</th>
+                <th>Folio</th>
+                <th>Fecha</th>
+                <th>ID Curso</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SITUACIÓN LÚDICA PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO</td>
+                <td>nNMkrjkBAm</td>
+                <td>19/1/2026</td>
+                <td>216</td>
+            </tr>
+            <tr>
+                <td>2</td>
