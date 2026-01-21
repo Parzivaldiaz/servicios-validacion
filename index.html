@@ -16,15 +16,17 @@
             align-items: center;
         }
 
+        /* Tarjeta central */
         .glass-card {
             background: rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 16px;
             padding: 30px 35px;
-            width: 440px;
+            width: 420px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
             color: #fff;
+            z-index: 1;
         }
 
         .glass-card h1 {
@@ -73,37 +75,51 @@
             background-color: #0c3c66;
         }
 
-        /* --- Información de contacto --- */
-        .info {
-            margin-top: 25px;
-            border-top: 1px solid rgba(255,255,255,0.3);
-            padding-top: 15px;
+        /* Barra inferior tipo taskbar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 46px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            color: #fff;
             font-size: 13px;
         }
 
-        .info-item {
+        .bar-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
+            gap: 8px;
             opacity: 0.9;
+            white-space: nowrap;
         }
 
         .icon {
-            font-size: 16px;
+            font-size: 15px;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 11px;
-            opacity: 0.7;
+        /* Para que no se encime en pantallas chicas */
+        @media (max-width: 600px) {
+            .bottom-bar {
+                flex-direction: column;
+                height: auto;
+                padding: 8px 0;
+                gap: 4px;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Tarjeta principal -->
     <div class="glass-card">
         <h1>Servicios de Validación</h1>
         <p>Validación de documentos y constancias</p>
@@ -112,28 +128,24 @@
         <input type="text" id="curp" placeholder="CURP">
 
         <button>Consultar</button>
+    </div>
 
-        <!-- Información de contacto -->
-        <div class="info">
-            <div class="info-item">
-                <span class="icon">📞</span>
-                <span>983-834-2682 / 983-834-2682</span>
-            </div>
-
-            <div class="info-item">
-                <span class="icon">✉️</span>
-                <span>direccion@crenjrg.edu.mx</span>
-            </div>
-
-            <div class="info-item">
-                <span class="icon">🕒</span>
-                <span>Lun–Vie: 7:00 – 15:00</span>
-            </div>
+    <!-- Barra inferior -->
+    <div class="bottom-bar">
+        <div class="bar-item">
+            <span class="icon">📞</span>
+            <span>983-834-2682</span>
         </div>
 
-        <footer>
-            © 2026 Servicios de Validación
-        </footer>
+        <div class="bar-item">
+            <span class="icon">✉️</span>
+            <span>direccion@crenjrg.edu.mx</span>
+        </div>
+
+        <div class="bar-item">
+            <span class="icon">🕒</span>
+            <span>Lun–Vie: 7:00 – 15:00</span>
+        </div>
     </div>
 
 </body>
