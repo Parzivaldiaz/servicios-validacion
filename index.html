@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             font-family: "Segoe UI", Arial, sans-serif;
             background: linear-gradient(135deg, #0f4c81, #1b6ca8);
             display: flex;
@@ -17,25 +17,27 @@
             color: #fff;
         }
 
-        /* Barra superior */
+        /* ===== ENCABEZADO INSTITUCIONAL ===== */
         .top-bar {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 10px 28px;
-            border-radius: 30px;
-            font-size: 15px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 72px;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.25);
             z-index: 5;
         }
 
-        /* Tarjeta central */
+        /* ===== TARJETA CENTRAL ===== */
         .glass-card {
             background: rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(12px);
@@ -43,6 +45,7 @@
             padding: 30px 35px;
             width: 460px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            margin-top: 90px;
             z-index: 1;
         }
 
@@ -90,7 +93,7 @@
             background-color: #0c3c66;
         }
 
-        /* Resultados */
+        /* ===== RESULTADOS ===== */
         .results {
             margin-top: 25px;
             display: none;
@@ -112,13 +115,14 @@
         th, td {
             border-bottom: 1px solid rgba(255,255,255,0.3);
             padding: 6px;
+            text-align: left;
         }
 
         th {
             font-weight: 600;
         }
 
-        /* Barra inferior izquierda */
+        /* ===== INFORMACIÓN INFERIOR ===== */
         .bottom-info {
             position: fixed;
             bottom: 15px;
@@ -131,7 +135,7 @@
             margin-bottom: 6px;
         }
 
-        /* Modal de error */
+        /* ===== MODAL ERROR ===== */
         .modal {
             position: fixed;
             inset: 0;
@@ -165,17 +169,28 @@
         .modal-content button {
             background-color: #0f4c81;
         }
+
+        @media (max-width: 600px) {
+            .top-bar {
+                font-size: 20px;
+                height: 64px;
+            }
+
+            .glass-card {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Barra superior -->
+    <!-- ENCABEZADO -->
     <div class="top-bar">
         Centro Regional de Educación Normal
     </div>
 
-    <!-- Tarjeta principal -->
+    <!-- CONTENIDO PRINCIPAL -->
     <div class="glass-card">
         <h1>Servicios de Validación</h1>
         <p>Validación de documentos y constancias</p>
@@ -221,47 +236,3 @@
                     <td>19/1/2026</td>
                     <td>221</td>
                 </tr>
-            </table>
-        </div>
-    </div>
-
-    <!-- Barra inferior -->
-    <div class="bottom-info">
-        <div>📞 983-834-2682</div>
-        <div>✉️ direccion@crenjrg.edu.mx</div>
-        <div>🕒 Lun–Vie: 7:00 – 15:00</div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <h2>CURP no encontrada</h2>
-            <p>
-                Revise la CURP ingresada o verifique que esté registrada
-                en la base de datos de la institución.
-            </p>
-            <button onclick="cerrarModal()">Aceptar</button>
-        </div>
-    </div>
-
-    <script>
-        function buscar() {
-            const curp = document.getElementById("curp").value.trim();
-            const results = document.getElementById("results");
-
-            if (curp === "BIDD971230HASRZM02") {
-                results.style.display = "block";
-            } else {
-                results.style.display = "none";
-                document.getElementById("modal").style.display = "flex";
-            }
-        }
-
-        function cerrarModal() {
-            document.getElementById("modal").style.display = "none";
-        }
-    </script>
-
-</body>
-</html>
-
