@@ -55,13 +55,13 @@
             text-align: center;
         }
 
-        .title {
+        .header-text .title {
             font-size: 30px;
             font-weight: 700;
             color: #0f4c81;
         }
 
-        .subtitle {
+        .header-text .subtitle {
             font-size: 16px;
             color: #1b6ca8;
         }
@@ -87,21 +87,30 @@
             text-align: center;
             font-size: 14px;
             margin-bottom: 20px;
-            opacity: 0.9;
         }
 
-        input, button {
+        label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
             border: none;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             font-size: 14px;
         }
 
         button {
+            width: 100%;
+            padding: 12px;
             background-color: #0f4c81;
             color: #fff;
+            border: none;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -110,10 +119,10 @@
             background-color: #0c3c66;
         }
 
-        /* ===== RESULTADOS ===== */
+        /* ===== TABLA ===== */
         .results {
+            margin-top: 25px;
             display: none;
-            margin-top: 20px;
         }
 
         table {
@@ -128,22 +137,8 @@
             border-bottom: 1px solid rgba(255,255,255,0.3);
         }
 
-        th {
-            font-weight: 600;
-        }
-
         td:nth-child(2) {
             text-align: left;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            position: fixed;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 11px;
-            opacity: 0.7;
         }
 
         /* ===== MODAL ===== */
@@ -166,9 +161,23 @@
             text-align: center;
         }
 
+        .modal-content h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
         @media (max-width: 600px) {
             .glass-card {
                 width: 92%;
+            }
+
+            .header-text .title {
+                font-size: 22px;
             }
         }
     </style>
@@ -180,7 +189,7 @@
 <div class="top-bar">
     <div class="header-full">
         <div class="header-content">
-            <img src="https://i.imgur.com/ZXJU2L5.png">
+            <img src="https://i.imgur.com/ZXJU2L5.png" alt="Logo">
             <div class="header-text">
                 <div class="title">Centro Regional de Educación Normal</div>
                 <div class="subtitle">Javier Rojo Gómez</div>
@@ -192,10 +201,11 @@
 <!-- CONTENIDO -->
 <div class="glass-card">
     <h1>Validación por CURP</h1>
-    <p>Consulta certificados asociados a tu CURP</p>
+    <p>Ingrese su CURP para consultar certificados</p>
 
-    <form onsubmit="buscarCURP(); return false;">
-        <input id="curp" placeholder="Ingresa tu CURP">
+    <form onsubmit="buscar(); return false;">
+        <label>CURP</label>
+        <input type="text" id="curp" placeholder="BIDD971230HASRZM02">
         <button type="submit">Consultar</button>
     </form>
 
@@ -206,7 +216,7 @@
                 <th>Curso</th>
                 <th>Folio</th>
                 <th>Fecha</th>
-                <th>ID Curso</th>
+                <th>ID</th>
             </tr>
             <tr>
                 <td>1</td>
@@ -217,3 +227,50 @@
             </tr>
             <tr>
                 <td>2</td>
+                <td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA</td>
+                <td>HWqcEm7u5D</td>
+                <td>19/1/2026</td>
+                <td>220</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td>
+                <td>6pP8N7hFSb</td>
+                <td>19/1/2026</td>
+                <td>221</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2>CURP no encontrada</h2>
+        <p>Revise la CURP ingresada o verifique que esté registrada en la base de datos.</p>
+        <button onclick="cerrarModal()">Aceptar</button>
+    </div>
+</div>
+
+<script>
+function buscar() {
+    const curp = document.getElementById("curp").value.trim();
+    const results = document.getElementById("results");
+    const modal = document.getElementById("modal");
+
+    if (curp === "BIDD971230HASRZM02") {
+        results.style.display = "block";
+        modal.style.display = "none";
+    } else {
+        results.style.display = "none";
+        modal.style.display = "flex";
+    }
+}
+
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+}
+</script>
+
+</body>
+</html>
