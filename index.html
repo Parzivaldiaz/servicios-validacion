@@ -22,14 +22,14 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 16px;
             padding: 30px 35px;
-            width: 420px;
+            width: 440px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
             color: #fff;
         }
 
         .glass-card h1 {
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-size: 24px;
             font-weight: 600;
         }
@@ -73,11 +73,31 @@
             background-color: #0c3c66;
         }
 
+        /* --- Información de contacto --- */
+        .info {
+            margin-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 15px;
+            font-size: 13px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .icon {
+            font-size: 16px;
+        }
+
         footer {
             text-align: center;
-            margin-top: 18px;
-            font-size: 12px;
-            opacity: 0.8;
+            margin-top: 12px;
+            font-size: 11px;
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -92,6 +112,24 @@
         <input type="text" id="curp" placeholder="CURP">
 
         <button>Consultar</button>
+
+        <!-- Información de contacto -->
+        <div class="info">
+            <div class="info-item">
+                <span class="icon">📞</span>
+                <span>983-834-2682 / 983-834-2682</span>
+            </div>
+
+            <div class="info-item">
+                <span class="icon">✉️</span>
+                <span>direccion@crenjrg.edu.mx</span>
+            </div>
+
+            <div class="info-item">
+                <span class="icon">🕒</span>
+                <span>Lun–Vie: 7:00 – 15:00</span>
+            </div>
+        </div>
 
         <footer>
             © 2026 Servicios de Validación
