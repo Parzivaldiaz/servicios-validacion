@@ -14,32 +14,29 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #fff;
         }
 
-        /* Tarjeta central */
         .glass-card {
             background: rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border-radius: 16px;
             padding: 30px 35px;
-            width: 420px;
+            width: 460px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-            color: #fff;
             z-index: 1;
         }
 
-        .glass-card h1 {
+        h1 {
             text-align: center;
             margin-bottom: 6px;
             font-size: 24px;
-            font-weight: 600;
         }
 
-        .glass-card p {
+        p {
             text-align: center;
             font-size: 14px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             opacity: 0.9;
         }
 
@@ -55,8 +52,8 @@
             border-radius: 8px;
             border: none;
             outline: none;
+            margin-bottom: 15px;
             font-size: 14px;
-            margin-bottom: 18px;
         }
 
         button {
@@ -66,7 +63,6 @@
             color: #fff;
             border: none;
             border-radius: 8px;
-            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -75,51 +71,86 @@
             background-color: #0c3c66;
         }
 
-        /* Barra inferior tipo taskbar */
-        .bottom-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
+        /* Resultados */
+        .results {
+            margin-top: 25px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .results p {
+            text-align: left;
+            margin: 4px 0;
+        }
+
+        table {
             width: 100%;
-            height: 46px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 25px;
-            color: #fff;
+            border-collapse: collapse;
+            margin-top: 10px;
             font-size: 13px;
         }
 
-        .bar-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        th, td {
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding: 6px;
+        }
+
+        th {
+            font-weight: 600;
+        }
+
+        /* Barra inferior izquierda */
+        .bottom-info {
+            position: fixed;
+            bottom: 15px;
+            left: 20px;
+            font-size: 13px;
             opacity: 0.9;
-            white-space: nowrap;
         }
 
-        .icon {
-            font-size: 15px;
+        .bottom-info div {
+            margin-bottom: 6px;
         }
 
-        /* Para que no se encime en pantallas chicas */
-        @media (max-width: 600px) {
-            .bottom-bar {
-                flex-direction: column;
-                height: auto;
-                padding: 8px 0;
-                gap: 4px;
-            }
+        /* Modal de error */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(14px);
+            border-radius: 14px;
+            padding: 25px;
+            width: 360px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .modal-content h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content button {
+            background-color: #0f4c81;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Tarjeta principal -->
     <div class="glass-card">
         <h1>Servicios de Validación</h1>
         <p>Validación de documentos y constancias</p>
@@ -127,26 +158,84 @@
         <label for="curp">Ingresa tu CURP</label>
         <input type="text" id="curp" placeholder="CURP">
 
-        <button>Consultar</button>
+        <button onclick="buscar()">Consultar</button>
+
+        <div class="results" id="results">
+            <p><strong>Nombre:</strong> Damián Briones Díaz</p>
+            <p><strong>Email:</strong> damian.brionesdiaz@iea.edu.mx</p>
+            <p><strong>CURP:</strong> BIDD971230HASRZM02</p>
+
+            <p style="margin-top:10px;"><strong>Certificados Emitidos</strong></p>
+
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Curso</th>
+                    <th>Folio</th>
+                    <th>Fecha</th>
+                    <th>ID Curso</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Situación lúdica para el desarrollo del pensamiento matemático</td>
+                    <td>nNMkrjkBAm</td>
+                    <td>19/1/2026</td>
+                    <td>216</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Libros de texto en el marco de la Nueva Escuela Mexicana</td>
+                    <td>HWqcEm7u5D</td>
+                    <td>19/1/2026</td>
+                    <td>220</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Diplomado en actualización docente afín al nuevo sistema educativo mexicano</td>
+                    <td>6pP8N7hFSb</td>
+                    <td>19/1/2026</td>
+                    <td>221</td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <!-- Barra inferior -->
-    <div class="bottom-bar">
-        <div class="bar-item">
-            <span class="icon">📞</span>
-            <span>983-834-2682</span>
-        </div>
+    <div class="bottom-info">
+        <div>📞 983-834-2682</div>
+        <div>✉️ direccion@crenjrg.edu.mx</div>
+        <div>🕒 Lun–Vie: 7:00 – 15:00</div>
+    </div>
 
-        <div class="bar-item">
-            <span class="icon">✉️</span>
-            <span>direccion@crenjrg.edu.mx</span>
-        </div>
-
-        <div class="bar-item">
-            <span class="icon">🕒</span>
-            <span>Lun–Vie: 7:00 – 15:00</span>
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>CURP no encontrada</h2>
+            <p>
+                Revise la CURP ingresada o verifique que esté registrada
+                en la base de datos de la institución.
+            </p>
+            <button onclick="cerrarModal()">Aceptar</button>
         </div>
     </div>
+
+    <script>
+        function buscar() {
+            const curp = document.getElementById("curp").value.trim();
+            const results = document.getElementById("results");
+
+            if (curp === "BIDD971230HASRZM02") {
+                results.style.display = "block";
+            } else {
+                results.style.display = "none";
+                document.getElementById("modal").style.display = "flex";
+            }
+        }
+
+        function cerrarModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
