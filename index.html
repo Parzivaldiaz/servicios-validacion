@@ -28,12 +28,26 @@
             backdrop-filter: blur(12px);
             display: flex;
             align-items: center;
-            justify-content: center;
+            padding: 0 25px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+            z-index: 5;
+        }
+
+        .top-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .top-left img {
+            height: 44px;
+            width: auto;
+        }
+
+        .top-title {
             font-size: 26px;
             font-weight: 600;
             letter-spacing: 1px;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.25);
-            z-index: 5;
         }
 
         /* ===== TARJETA ===== */
@@ -120,7 +134,7 @@
         /* ===== INFO INFERIOR ===== */
         .bottom-info {
             position: fixed;
-            bottom: 15px;
+            bottom: 38px;
             left: 20px;
             font-size: 13px;
             opacity: 0.9;
@@ -130,7 +144,17 @@
             margin-bottom: 6px;
         }
 
-        /* ===== MODAL ERROR ===== */
+        /* ===== FOOTER LEGAL ===== */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        /* ===== MODAL ===== */
         .modal {
             position: fixed;
             inset: 0;
@@ -165,8 +189,12 @@
                 width: 92%;
             }
 
-            .top-bar {
+            .top-title {
                 font-size: 20px;
+            }
+
+            .top-left img {
+                height: 34px;
             }
         }
     </style>
@@ -174,10 +202,17 @@
 
 <body>
 
+<!-- ENCABEZADO -->
 <div class="top-bar">
-    Centro Regional de Educación Normal
+    <div class="top-left">
+        <img src="https://i.imgur.com/4d9l9DI.png" alt="Logo Escuela Normal">
+        <div class="top-title">
+            Centro Regional de Educación Normal
+        </div>
+    </div>
 </div>
 
+<!-- CONTENIDO -->
 <div class="glass-card">
     <h1>Servicios de Validación</h1>
     <p>Validación de documentos y constancias</p>
@@ -221,12 +256,19 @@
     </div>
 </div>
 
+<!-- INFO -->
 <div class="bottom-info">
     <div>📞 983-834-2682</div>
     <div>✉️ direccion@crenjrg.edu.mx</div>
     <div>🕒 Lun–Vie: 7:00 – 15:00</div>
 </div>
 
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 Centro Regional de Educación Normal de Bacalar Quintana Roo. Todos los Derechos Reservados.
+</div>
+
+<!-- MODAL -->
 <div class="modal" id="modal">
     <div class="modal-content">
         <h2>CURP no encontrada</h2>
