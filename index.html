@@ -17,6 +17,25 @@
             color: #fff;
         }
 
+        /* Barra superior */
+        .top-bar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 10px 28px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 5;
+        }
+
+        /* Tarjeta central */
         .glass-card {
             background: rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(12px);
@@ -151,6 +170,12 @@
 
 <body>
 
+    <!-- Barra superior -->
+    <div class="top-bar">
+        Centro Regional de Educación Normal
+    </div>
+
+    <!-- Tarjeta principal -->
     <div class="glass-card">
         <h1>Servicios de Validación</h1>
         <p>Validación de documentos y constancias</p>
@@ -239,3 +264,4 @@
 
 </body>
 </html>
+
