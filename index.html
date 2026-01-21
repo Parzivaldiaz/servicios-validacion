@@ -1,236 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Servicios de Validación</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Servicios de Validación</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: linear-gradient(135deg, #0f4c81, #1b6ca8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-        }
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:linear-gradient(135deg,#0f4c81,#1b6ca8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+}
 
-        /* ===== ENCABEZADO ===== */
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.16);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 25px rgba(0,0,0,0.25);
-            z-index: 5;
-            display: flex;
-            align-items: center;
-        }
+/* ENCABEZADO */
+.top-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100px;
+    background:rgba(255,255,255,.16);
+    backdrop-filter:blur(12px);
+    box-shadow:0 4px 25px rgba(0,0,0,.25);
+    z-index:5;
+    display:flex;
+    align-items:center;
+}
+.header-full{
+    width:100%;
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:14px 20px;
+}
+.header-content{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+.header-content img{height:56px}
+.header-text{text-align:center}
+.title{font-size:30px;font-weight:700;color:#0f4c81}
+.subtitle{font-size:16px;color:#1b6ca8}
 
-        .header-full {
-            width: 100%;
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 14px 20px;
-        }
+/* CONTENEDOR */
+.container{
+    display:flex;
+    gap:30px;
+    margin-top:140px;
+}
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
+.card{
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(12px);
+    border-radius:16px;
+    padding:30px;
+    width:260px;
+    text-align:center;
+    box-shadow:0 8px 32px rgba(0,0,0,.25);
+}
 
-        .header-content img {
-            height: 56px;
-            width: auto;
-        }
+.card h2{margin-bottom:12px}
+.card p{font-size:14px;margin-bottom:20px}
 
-        .header-text {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.card a{
+    display:block;
+    text-decoration:none;
+    background:#0f4c81;
+    color:#fff;
+    padding:12px;
+    border-radius:8px;
+    font-weight:600;
+}
 
-        .header-text .title {
-            font-size: 30px;
-            font-weight: 700;
-            color: #0f4c81;
-            line-height: 1.1;
-            text-align: center;
-        }
+.card a:hover{background:#0c3c66}
 
-        .header-text .subtitle {
-            font-size: 16px;
-            font-weight: 500;
-            color: #1b6ca8;
-            margin-top: 3px;
-            text-align: center;
-        }
-
-        /* ===== TARJETA ===== */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
-            padding: 30px;
-            width: 520px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-            margin-top: 140px;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 6px;
-        }
-
-        p {
-            text-align: center;
-            font-size: 14px;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        label {
-            font-size: 14px;
-            margin-bottom: 6px;
-            display: block;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #0f4c81;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0c3c66;
-        }
-
-        /* ===== TABLA ===== */
-        .results {
-            margin-top: 25px;
-            display: none;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            text-align: center;
-        }
-
-        th, td {
-            padding: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-        }
-
-        th {
-            font-weight: 600;
-        }
-
-        td:nth-child(2) {
-            text-align: left;
-        }
-
-        /* ===== INFO INFERIOR ===== */
-        .bottom-info {
-            position: fixed;
-            bottom: 38px;
-            left: 20px;
-            font-size: 13px;
-            opacity: 0.9;
-        }
-
-        .bottom-info div {
-            margin-bottom: 6px;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            position: fixed;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 11px;
-            opacity: 0.7;
-        }
-
-        /* ===== MODAL ===== */
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.45);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .modal-content {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(14px);
-            border-radius: 14px;
-            padding: 25px;
-            width: 360px;
-            text-align: center;
-        }
-
-        .modal-content h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .modal-content p {
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .glass-card {
-                width: 92%;
-            }
-
-            .header-text .title {
-                font-size: 22px;
-            }
-
-            .header-content img {
-                height: 44px;
-            }
-        }
-    </style>
+/* FOOTER */
+.footer{
+    position:fixed;
+    bottom:10px;
+    width:100%;
+    text-align:center;
+    font-size:11px;
+    opacity:.7;
+}
+</style>
 </head>
 
 <body>
 
-<!-- ENCABEZADO -->
 <div class="top-bar">
     <div class="header-full">
         <div class="header-content">
-            <img src="https://i.imgur.com/ZXJU2L5.png" alt="Logo Escuela Normal">
+            <img src="https://i.imgur.com/ZXJU2L5.png">
             <div class="header-text">
                 <div class="title">Centro Regional de Educación Normal</div>
                 <div class="subtitle">Javier Rojo Gómez</div>
@@ -239,92 +107,23 @@
     </div>
 </div>
 
-<!-- CONTENIDO -->
-<div class="glass-card">
-    <h1>Servicios de Validación</h1>
-    <p>Validación de documentos y constancias</p>
+<div class="container">
+    <div class="card">
+        <h2>Buscar por CURP</h2>
+        <p>Consulta certificados asociados a tu CURP</p>
+        <a href="curp.html">Ingresar CURP</a>
+    </div>
 
-    <form onsubmit="buscar(); return false;">
-        <label>Ingresa tu CURP</label>
-        <input type="text" id="curp" placeholder="CURP">
-        <button type="submit">Consultar</button>
-    </form>
-
-    <div class="results" id="results">
-        <table>
-            <tr>
-                <th>#</th>
-                <th>Curso</th>
-                <th>Folio</th>
-                <th>Fecha</th>
-                <th>ID Curso</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>SITUACIÓN LÚDICA PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO</td>
-                <td>nNMkrjkBAm</td>
-                <td>19/1/2026</td>
-                <td>216</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td>
-                <td>HWqcEm7u5D</td>
-                <td>19/1/2026</td>
-                <td>220</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td>
-                <td>6pP8N7hFSb</td>
-                <td>19/1/2026</td>
-                <td>221</td>
-            </tr>
-        </table>
+    <div class="card">
+        <h2>Buscar por Folio</h2>
+        <p>Consulta información usando tu folio</p>
+        <a href="folio.html">Ingresar Folio</a>
     </div>
 </div>
 
-<!-- INFO -->
-<div class="bottom-info">
-    <div>📞 983-834-2682</div>
-    <div>✉️ direccion@crenjrg.edu.mx</div>
-    <div>🕒 Lun–Vie: 7:00 – 15:00</div>
-</div>
-
-<!-- FOOTER -->
 <div class="footer">
-    © 2026 Centro Regional de Educación Normal de Bacalar Quintana Roo. Todos los Derechos Reservados.
+© 2026 Centro Regional de Educación Normal de Bacalar Quintana Roo. Todos los Derechos Reservados.
 </div>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h2>CURP no encontrada</h2>
-        <p>
-            Revise la CURP ingresada o verifique que
-            esté registrada en la base de datos de la institución.
-        </p>
-        <button onclick="cerrarModal()">Aceptar</button>
-    </div>
-</div>
-
-<script>
-function buscar() {
-    const curp = document.getElementById("curp").value.trim();
-    const results = document.getElementById("results");
-
-    if (curp === "BIDD971230HASRZM02") {
-        results.style.display = "block";
-    } else {
-        results.style.display = "none";
-        document.getElementById("modal").style.display = "flex";
-    }
-}
-
-function cerrarModal() {
-    document.getElementById("modal").style.display = "none";
-}
-</script>
 
 </body>
 </html>
