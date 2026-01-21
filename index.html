@@ -17,7 +17,7 @@
             color: #fff;
         }
 
-        /* ===== ENCABEZADO INSTITUCIONAL ===== */
+        /* ===== ENCABEZADO ===== */
         .top-bar {
             position: fixed;
             top: 0;
@@ -26,7 +26,6 @@
             height: 72px;
             background: rgba(255, 255, 255, 0.16);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -37,22 +36,21 @@
             z-index: 5;
         }
 
-        /* ===== TARJETA CENTRAL ===== */
+        /* ===== TARJETA ===== */
         .glass-card {
             background: rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(12px);
             border-radius: 16px;
-            padding: 30px 35px;
-            width: 460px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            width: 520px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
             margin-top: 90px;
-            z-index: 1;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 6px;
             font-size: 24px;
+            margin-bottom: 6px;
         }
 
         p {
@@ -64,8 +62,8 @@
 
         label {
             font-size: 14px;
-            display: block;
             margin-bottom: 6px;
+            display: block;
         }
 
         input {
@@ -93,36 +91,33 @@
             background-color: #0c3c66;
         }
 
-        /* ===== RESULTADOS ===== */
+        /* ===== TABLA ===== */
         .results {
             margin-top: 25px;
             display: none;
-            font-size: 14px;
-        }
-
-        .results p {
-            text-align: left;
-            margin: 4px 0;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
             font-size: 13px;
+            text-align: center;
         }
 
         th, td {
+            padding: 8px;
             border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding: 6px;
-            text-align: left;
         }
 
         th {
             font-weight: 600;
         }
 
-        /* ===== INFORMACIÓN INFERIOR ===== */
+        td:nth-child(2) {
+            text-align: left;
+        }
+
+        /* ===== INFO INFERIOR ===== */
         .bottom-info {
             position: fixed;
             bottom: 15px;
@@ -153,7 +148,6 @@
             padding: 25px;
             width: 360px;
             text-align: center;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
         }
 
         .modal-content h2 {
@@ -166,18 +160,13 @@
             margin-bottom: 20px;
         }
 
-        .modal-content button {
-            background-color: #0f4c81;
-        }
-
         @media (max-width: 600px) {
-            .top-bar {
-                font-size: 20px;
-                height: 64px;
+            .glass-card {
+                width: 92%;
             }
 
-            .glass-card {
-                width: 90%;
+            .top-bar {
+                font-size: 20px;
             }
         }
     </style>
@@ -185,54 +174,87 @@
 
 <body>
 
-    <!-- ENCABEZADO -->
-    <div class="top-bar">
-        Centro Regional de Educación Normal
+<div class="top-bar">
+    Centro Regional de Educación Normal
+</div>
+
+<div class="glass-card">
+    <h1>Servicios de Validación</h1>
+    <p>Validación de documentos y constancias</p>
+
+    <label>Ingresa tu CURP</label>
+    <input type="text" id="curp" placeholder="CURP">
+
+    <button onclick="buscar()">Consultar</button>
+
+    <div class="results" id="results">
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Curso</th>
+                <th>Folio</th>
+                <th>Fecha</th>
+                <th>ID Curso</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SITUACIÓN LÚDICA PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO</td>
+                <td>nNMkrjkBAm</td>
+                <td>19/1/2026</td>
+                <td>216</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td>
+                <td>HWqcEm7u5D</td>
+                <td>19/1/2026</td>
+                <td>220</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td>
+                <td>6pP8N7hFSb</td>
+                <td>19/1/2026</td>
+                <td>221</td>
+            </tr>
+        </table>
     </div>
+</div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="glass-card">
-        <h1>Servicios de Validación</h1>
-        <p>Validación de documentos y constancias</p>
+<div class="bottom-info">
+    <div>📞 983-834-2682</div>
+    <div>✉️ direccion@crenjrg.edu.mx</div>
+    <div>🕒 Lun–Vie: 7:00 – 15:00</div>
+</div>
 
-        <label for="curp">Ingresa tu CURP</label>
-        <input type="text" id="curp" placeholder="CURP">
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2>CURP no encontrada</h2>
+        <p>
+            Revise la CURP ingresada o verifique que
+            esté registrada en la base de datos de la institución.
+        </p>
+        <button onclick="cerrarModal()">Aceptar</button>
+    </div>
+</div>
 
-        <button onclick="buscar()">Consultar</button>
+<script>
+function buscar() {
+    const curp = document.getElementById("curp").value.trim();
+    const results = document.getElementById("results");
 
-        <div class="results" id="results">
-            <p><strong>Nombre:</strong> Damián Briones Díaz</p>
-            <p><strong>Email:</strong> damian.brionesdiaz@iea.edu.mx</p>
-            <p><strong>CURP:</strong> BIDD971230HASRZM02</p>
+    if (curp === "BIDD971230HASRZM02") {
+        results.style.display = "block";
+    } else {
+        results.style.display = "none";
+        document.getElementById("modal").style.display = "flex";
+    }
+}
 
-            <p style="margin-top:10px;"><strong>Certificados Emitidos</strong></p>
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+}
+</script>
 
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>Curso</th>
-                    <th>Folio</th>
-                    <th>Fecha</th>
-                    <th>ID Curso</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Situación lúdica para el desarrollo del pensamiento matemático</td>
-                    <td>nNMkrjkBAm</td>
-                    <td>19/1/2026</td>
-                    <td>216</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Libros de texto en el marco de la Nueva Escuela Mexicana</td>
-                    <td>HWqcEm7u5D</td>
-                    <td>19/1/2026</td>
-                    <td>220</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Diplomado en actualización docente afín al nuevo sistema educativo mexicano</td>
-                    <td>6pP8N7hFSb</td>
-                    <td>19/1/2026</td>
-                    <td>221</td>
-                </tr>
+</body>
+</html>
