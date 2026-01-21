@@ -70,16 +70,18 @@ input,button{
     margin-top:10px;
 }
 
+input{
+    autocomplete: "new-password";
+    autocorrect: "off";
+    autocapitalize: "off";
+    spellcheck: false;
+}
+
 button{
     background:#0f4c81;
     color:#fff;
     font-weight:600;
     cursor:pointer;
-}
-
-/* DESACTIVAR AUTOCOMPLETADO */
-input{
-    autocomplete: off;
 }
 
 .result{
@@ -117,7 +119,7 @@ input{
 <h2>Validación por Folio</h2>
 
 <form onsubmit="buscarFolio(); return false;">
-    <input id="folio" placeholder="6pP8N7hFSb" autocomplete="off">
+    <input id="folio" placeholder="Escribe tu Folio" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false">
     <button>Consultar</button>
 </form>
 
