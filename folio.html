@@ -1,65 +1,131 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Validación por Folio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Validación por Folio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: linear-gradient(135deg, #0f4c81, #1b6ca8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-        }
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:linear-gradient(135deg,#0f4c81,#1b6ca8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+}
 
-        /* ===== ENCABEZADO ===== */
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.16);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 25px rgba(0,0,0,0.25);
-            z-index: 5;
-            display: flex;
-            align-items: center;
-        }
+.top-bar{
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    height:100px;
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 4px 25px rgba(0,0,0,.25);
+}
 
-        .header-full {
-            width: 100%;
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 14px 20px;
-        }
+.header-content{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
+.header-content img{
+    height:56px;
+}
 
-        .header-content img {
-            height: 56px;
-        }
+.title{
+    font-size:30px;
+    font-weight:700;
+    color:#0f4c81;
+}
 
-        .header-text {
-            text-align: center;
-        }
+.subtitle{
+    font-size:16px;
+    color:#1b6ca8;
+}
 
-        .title {
-            font-size: 30px;
-            font-weight: 700;
-            color: #0f4c81;
-        }
+.card{
+    margin-top:140px;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(12px);
+    border-radius:16px;
+    padding:30px;
+    width:520px;
+}
 
-        .subtitle {
-            font-size: 16px
+input,button{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:none;
+    margin-top:10px;
+}
+
+button{
+    background:#0f4c81;
+    color:#fff;
+    font-weight:600;
+}
+
+.result{
+    display:none;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+    <div class="header-content">
+        <a href="index.html">
+            <img src="https://i.imgur.com/ZXJU2L5.png">
+        </a>
+        <div>
+            <div class="title">Centro Regional de Educación Normal</div>
+            <div class="subtitle">Javier Rojo Gómez</div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+<h2>Buscar por Folio</h2>
+
+<form onsubmit="buscarFolio();return false;">
+<input id="folio" placeholder="6pP8N7hFSb">
+<button>Consultar</button>
+</form>
+
+<div class="result" id="res">
+<p><strong>Nombre completo:</strong> Damián Briones Díaz</p>
+<p><strong>Curso:</strong> <span id="curso"></span></p>
+</div>
+</div>
+
+<script>
+const base={
+ "nNMkrjkBAm":"SITUACIÓN LÚDICA PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO",
+ "HWqcEm7u5D":"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA",
+ "6pP8N7hFSb":"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"
+};
+
+function buscarFolio(){
+ const f=document.getElementById("folio").value.trim();
+ if(base[f]){
+   document.getElementById("curso").textContent=base[f];
+   document.getElementById("res").style.display="block";
+ }else{
+   alert("El folio no está en la base de datos");
+ }
+}
+</script>
+
+</body>
+</html>
+
