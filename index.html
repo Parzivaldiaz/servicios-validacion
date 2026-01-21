@@ -2,54 +2,86 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Servicios de Validación</title>
+    <title>Validación de Documentos</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f4f8;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f8;
             margin: 0;
-            padding: 0;
         }
+
         header {
-            background-color: #1f3a5f;
+            background-color: #1f2a44;
             color: white;
-            padding: 15px 30px;
-            font-size: 20px;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
         }
+
         .container {
             max-width: 900px;
-            margin: 50px auto;
+            margin: 40px auto;
             background: white;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+
         h2 {
-            text-align: center;
-            color: #1f3a5f;
+            margin-top: 0;
+            color: #1f2a44;
         }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
         input {
             width: 100%;
             padding: 10px;
-            margin-top: 15px;
-            font-size: 16px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
         }
+
         button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #1f3a5f;
+            background-color: #1f2a44;
             color: white;
             border: none;
-            cursor: pointer;
-            font-size: 16px;
             border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
         }
+
         button:hover {
-            background-color: #162b47;
+            background-color: #162033;
         }
+
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e9edf2;
+        }
+
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin: 40px 0;
             color: #666;
             font-size: 14px;
         }
@@ -62,12 +94,34 @@
 </header>
 
 <div class="container">
-    <h2>Consulta de Constancias</h2>
+    <h2>Validación de Documentos</h2>
+    <p>Consulta el estado de documentos mediante tu CURP.</p>
 
-    <label>Ingresa tu CURP</label>
-    <input type="text" placeholder="CURP">
+    <label for="curp">Ingresa tu CURP</label>
+    <input type="text" id="curp" placeholder="CURP">
 
     <button>Consultar</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Documento</th>
+                <th>Folio</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Constancia de Validación</td>
+                <td>ABC12345</td>
+                <td>20/01/2026</td>
+                <td>Válido</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <footer>
