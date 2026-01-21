@@ -17,6 +17,7 @@ body{
     color:#fff;
 }
 
+/* ENCABEZADO */
 .top-bar{
     position:fixed;
     top:0; left:0;
@@ -27,6 +28,7 @@ body{
     justify-content:center;
     align-items:center;
     box-shadow:0 4px 25px rgba(0,0,0,.25);
+    z-index:10;
 }
 
 .header-content{
@@ -50,15 +52,17 @@ body{
     color:#1b6ca8;
 }
 
+/* TARJETA */
 .card{
-    margin-top:140px;
+    margin-top:150px;
     background:rgba(255,255,255,.18);
     backdrop-filter:blur(12px);
     border-radius:16px;
     padding:30px;
-    width:520px;
+    width:700px;
 }
 
+/* INPUT */
 input,button{
     width:100%;
     padding:12px;
@@ -71,17 +75,47 @@ button{
     background:#0f4c81;
     color:#fff;
     font-weight:600;
+    cursor:pointer;
 }
 
-.results{
-    display:none;
+/* DATOS PERSONALES */
+.info{
     margin-top:20px;
+    display:none;
+    font-size:14px;
+}
+
+.info p{
+    margin:6px 0;
+}
+
+/* TABLA */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    font-size:13px;
+    text-align:center;
+}
+
+th,td{
+    padding:8px;
+    border-bottom:1px solid rgba(255,255,255,.35);
+}
+
+th{
+    font-weight:600;
+}
+
+td:nth-child(2){
+    text-align:left;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ENCABEZADO -->
 <div class="top-bar">
     <div class="header-content">
         <a href="index.html">
@@ -94,29 +128,68 @@ button{
     </div>
 </div>
 
+<!-- CONTENIDO -->
 <div class="card">
-<h2>Buscar por CURP</h2>
+<h2>Validación por CURP</h2>
 
-<form onsubmit="buscar();return false;">
-<input id="curp" placeholder="BIDD971230HASRZM02">
-<button>Consultar</button>
+<form onsubmit="buscarCURP(); return false;">
+    <input id="curp" placeholder="BIDD971230HASRZM02">
+    <button>Consultar</button>
 </form>
 
-<div class="results" id="results">
-<p><strong>Nombre:</strong> Damián Briones Díaz</p>
+<!-- DATOS PERSONALES -->
+<div class="info" id="info">
+    <p><strong>Nombre:</strong> Damián Briones Díaz</p>
+    <p><strong>Email:</strong> damian.brionesdiaz@iea.edu.mx</p>
+    <p><strong>CURP:</strong> BIDD971230HASRZM02</p>
+
+    <h3 style="margin-top:20px;">Certificados Emitidos</h3>
+
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Curso</th>
+            <th>Folio</th>
+            <th>Fecha</th>
+            <th>ID Curso</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>SITUACIÓN LÚDICA PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO</td>
+            <td>nNMkrjkBAm</td>
+            <td>19/1/2026</td>
+            <td>216</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td>
+            <td>HWqcEm7u5D</td>
+            <td>19/1/2026</td>
+            <td>220</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td>
+            <td>6pP8N7hFSb</td>
+            <td>19/1/2026</td>
+            <td>221</td>
+        </tr>
+    </table>
 </div>
 </div>
 
 <script>
-function buscar(){
+function buscarCURP(){
     const c=document.getElementById("curp").value.trim();
     if(c==="BIDD971230HASRZM02"){
-        document.getElementById("results").style.display="block";
+        document.getElementById("info").style.display="block";
     }else{
-        alert("Revise la CURP, no aparece en la base de datos");
+        alert("Revise la CURP, no aparece en la base de datos.");
+        document.getElementById("info").style.display="none";
     }
 }
 </script>
 
 </body>
 </html>
+
