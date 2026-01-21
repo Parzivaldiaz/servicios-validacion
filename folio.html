@@ -17,6 +17,7 @@ body{
     color:#fff;
 }
 
+/* ENCABEZADO */
 .top-bar{
     position:fixed;
     top:0; left:0;
@@ -50,8 +51,9 @@ body{
     color:#1b6ca8;
 }
 
+/* TARJETA */
 .card{
-    margin-top:140px;
+    margin-top:150px;
     background:rgba(255,255,255,.18);
     backdrop-filter:blur(12px);
     border-radius:16px;
@@ -76,12 +78,14 @@ button{
 .result{
     display:none;
     margin-top:20px;
+    font-size:15px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ENCABEZADO -->
 <div class="top-bar">
     <div class="header-content">
         <a href="index.html">
@@ -94,38 +98,41 @@ button{
     </div>
 </div>
 
+<!-- CONTENIDO -->
 <div class="card">
-<h2>Buscar por Folio</h2>
+<h2>Validación por Folio</h2>
 
-<form onsubmit="buscarFolio();return false;">
-<input id="folio" placeholder="6pP8N7hFSb">
-<button>Consultar</button>
+<form onsubmit="buscarFolio(); return false;">
+    <input id="folio" placeholder="6pP8N7hFSb">
+    <button>Consultar</button>
 </form>
 
 <div class="result" id="res">
-<p><strong>Nombre completo:</strong> Damián Briones Díaz</p>
-<p><strong>Curso:</strong> <span id="curso"></span></p>
+    <p><strong>Nombre completo:</strong> Damián Briones Díaz</p>
+    <p><strong>Curso:</strong> <span id="curso"></span></p>
 </div>
 </div>
 
 <script>
-const base={
+const folios={
  "nNMkrjkBAm":"SITUACIÓN LÚDICA PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO",
- "HWqcEm7u5D":"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA",
+ "HWqcEm7u5D":"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",
  "6pP8N7hFSb":"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"
 };
 
 function buscarFolio(){
- const f=document.getElementById("folio").value.trim();
- if(base[f]){
-   document.getElementById("curso").textContent=base[f];
-   document.getElementById("res").style.display="block";
- }else{
-   alert("El folio no está en la base de datos");
- }
+    const f=document.getElementById("folio").value.trim();
+    if(folios[f]){
+        document.getElementById("curso").textContent=folios[f];
+        document.getElementById("res").style.display="block";
+    }else{
+        alert("El folio no está registrado en la base de datos.");
+        document.getElementById("res").style.display="none";
+    }
 }
 </script>
 
 </body>
 </html>
+
 
