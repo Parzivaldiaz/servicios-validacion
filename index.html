@@ -7,76 +7,78 @@
 
 <style>
 body{
-  margin:0;
-  min-height:100vh;
-  font-family:"Segoe UI",Arial,sans-serif;
-  background:linear-gradient(135deg,#0f4c81,#1b6ca8);
-  display:flex;
-  flex-direction:column;
-  color:#fff;
+    margin:0;
+    min-height:100vh;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:linear-gradient(135deg,#0f4c81,#1b6ca8);
+    display:flex;
+    flex-direction:column;
+    color:#fff;
 }
 .top-bar{
-  position:fixed;
-  top:0; left:0;
-  width:100%;
-  height:100px;
-  background:#fff;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  box-shadow:0 4px 25px rgba(0,0,0,.25);
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    height:100px;
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 4px 25px rgba(0,0,0,.25);
+    z-index:10;
 }
 .header-content{
-  display:flex;
-  align-items:center;
-  gap:18px;
+    display:flex;
+    align-items:center;
+    gap:18px;
 }
 .header-content img{
-  height:56px;
+    height:56px;
 }
 .header-text{
-  text-align:center;
+    text-align:center;
 }
 .title{
-  font-size:30px;
-  font-weight:700;
-  color:#0f4c81;
+    font-size:30px;
+    font-weight:700;
+    color:#0f4c81;
 }
 .subtitle{
-  font-size:16px;
-  color:#1b6ca8;
+    font-size:16px;
+    color:#1b6ca8;
 }
 .main-container{
-  flex:1;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+    display:flex;
+    flex:1;
+    justify-content:center;
+    align-items:center;
 }
 .card{
-  background:rgba(255,255,255,.18);
-  backdrop-filter:blur(12px);
-  border-radius:16px;
-  padding:40px;
-  width:420px;
-  text-align:center;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(12px);
+    border-radius:16px;
+    padding:40px;
+    width:420px;
+    text-align:center;
+    box-shadow:0 4px 25px rgba(0,0,0,.2);
 }
 .card a{
-  display:block;
-  margin-top:15px;
-  padding:14px;
-  background:#0f4c81;
-  color:#fff;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:600;
+    display:block;
+    margin-top:15px;
+    padding:14px;
+    background:#0f4c81;
+    color:#fff;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
 }
 .card a:hover{
-  background:#0c3c66;
+    background:#0c3c66;
 }
 .footer{
-  padding:10px;
-  text-align:center;
-  font-size:12px;
+    padding:10px;
+    text-align:center;
+    font-size:12px;
 }
 </style>
 </head>
@@ -84,27 +86,27 @@ body{
 <body>
 
 <div class="top-bar">
-  <div class="header-content">
-    <a href="index.html">
-      <img src="https://i.imgur.com/ZXJU2L5.png" alt="Logo">
-    </a>
-    <div class="header-text">
-      <div class="title">Centro Regional de Educación Normal</div>
-      <div class="subtitle">Javier Rojo Gómez</div>
+    <div class="header-content">
+        <a href="index.html">
+            <img src="https://i.imgur.com/ZXJU2L5.png" alt="Logo">
+        </a>
+        <div class="header-text">
+            <div class="title">Centro Regional de Educación Normal</div>
+            <div class="subtitle">Javier Rojo Gómez</div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="main-container">
-  <div class="card">
-    <h2>Servicios de Validación</h2>
-    <a href="curp.html">Buscar por CURP</a>
-    <a href="folio.html">Buscar por FOLIO</a>
-  </div>
+    <div class="card">
+        <h1>Servicios de Validación</h1>
+        <a href="curp.html">Buscar por CURP</a>
+        <a href="folio.html">Buscar por Folio</a>
+    </div>
 </div>
 
 <div class="footer">
-© 2026 Centro Regional de Educación Normal de Bacalar Quintana Roo.
+    © 2026 Centro Regional de Educación Normal de Bacalar Quintana Roo. Todos los Derechos Reservados.
 </div>
 
 </body>
