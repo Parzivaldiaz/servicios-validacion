@@ -27,12 +27,27 @@ body{
   align-items:center;
   gap:18px;
 }
-.header-content img{ height:56px; }
-.header-text{ text-align:center; }
-.title{ font-size:28px; font-weight:700; color:#0f4c81; }
-.subtitle{ font-size:15px; color:#1b6ca8; }
+.header-content img{
+  height:56px;
+}
+.header-text{
+  text-align:center;
+}
+.title{
+  font-size:28px;
+  font-weight:700;
+  color:#0f4c81;
+}
+.subtitle{
+  font-size:15px;
+  color:#1b6ca8;
+}
 
-.main{ margin-top:140px; display:flex; justify-content:center; }
+.main{
+  margin-top:140px;
+  display:flex;
+  justify-content:center;
+}
 .card{
   background:rgba(255,255,255,.18);
   backdrop-filter:blur(12px);
@@ -40,7 +55,9 @@ body{
   padding:30px;
   width:900px;
 }
-.card h3{ text-align:center; }
+.card h3{
+  text-align:center;
+}
 
 input,button{
   width:100%;
@@ -56,7 +73,10 @@ button{
   cursor:pointer;
 }
 
-.resultado{ margin-top:20px; text-align:left; }
+.resultado{
+  margin-top:20px;
+  text-align:left;
+}
 
 table{
   width:100%;
@@ -70,6 +90,7 @@ th,td{
   text-align:left;
 }
 
+/* Ventanas de aviso */
 .modal{
   position:fixed;
   inset:0;
@@ -120,91 +141,98 @@ th,td{
 </div>
 
 <script>
-const cursosDamian = [
- "DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",
- "LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",
- "ESTIMULACIÓN TEMPRANA",
- "ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",
- "HERRAMIENTAS DIGITALES",
- "LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD",
- "LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA",
- "REDACCIÓN DE DOCUMENTOS ACADÉMICOS",
- "EVALUACIÓN FORMATIVA",
- "EDUCACIÓN INCLUSIVA",
- "DIDÁCTICA DEL ESPAÑOL",
- "PLANEACIÓN Y EVALUACIÓN EDUCATIVA"
-];
+/* ===============================
+   BASE DE DATOS PRINCIPAL
+   ===============================
+   Para agregar personas:
+   1) Agregar una nueva CURP
+   2) Poner nombre, email
+   3) Agregar cursos con:
+      - id (NO repetir)
+      - nombre del curso
+      - folio (único)
+      - fecha
+*/
 
-function tablaCursos(cursos){
- return cursos.map((c,i)=>`
- <tr>
-   <td>${i+1}</td>
-   <td>${c}</td>
-   <td>${Math.random().toString(36).substring(2,12).toUpperCase()}</td>
-   <td>19/1/2026</td>
-   <td>${200+i}</td>
- </tr>`).join("");
-}
+const personas = {
+  "BIDD971230HASRZM02": {
+    nombre: "Damián Briones Díaz",
+    email: "damian.brionesdiaz@iea.edu.mx",
+    cursos: [
+      {id:201,curso:"PROCESO DE ENSEÑANZA y aprendizaje de la lengua inglesa",folio:"K1L2M3N4O5",fecha:"2026"},
+      {id:202,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"6pP8N7hFSb",fecha:"2026"},
+      {id:203,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"HWqcEm7u5D",fecha:"2026"},
+      {id:204,curso:"SITUACIÓN LÚDICAS PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO",folio:"nNMkrjkBAm",fecha:"2026"},
+      {id:205,curso:"ENFOQUES DIDÁCTICOS DE LA NUEVA ESCUELA MEXICANA",folio:"F6g7H8i9J0",fecha:"2026"},
+      {id:206,curso:"LA NUEVA ESCUELA MEXICANA: FUNDAMENTOS, PLANEACIÓN Y EVALUACIÓN",folio:"A1b2C3d4E5",fecha:"2026"},
+      {id:207,curso:"ESTIMULACIÓN TEMPRANA",folio:"Q9R2T7M4XK",fecha:"2026"},
+      {id:208,curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",folio:"L8P0ZK3W1S",fecha:"2026"},
+      {id:209,curso:"HERRAMIENTAS DIGITALES",folio:"Y7C5A9D2QH",fecha:"2026"},
+      {id:210,curso:"LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD",folio:"B4N6FJ8R2E",fecha:"2026"},
+      {id:211,curso:"LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA, DEL LENGUAJE Y DIFICULTADES EN LA COMUNICACIÓN",folio:"M9X2K7WQ4A",fecha:"2026"},
+      {id:212,curso:"REDACCIÓN DE DOCUMENTOS ACADÉMICOS",folio:"S5H8E2C0YF",fecha:"2026"}
+    ]
+  },
+
+  "LOHF890718HSLPRR01": {
+    nombre: "Francisco Antonio López Hernández",
+    email: "pansho_lopez23@hotmail.com",
+    cursos: [
+      {id:301,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"X9A7Q2L8MZ",fecha:"2026"},
+      {id:302,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"R4W8C6T9B2",fecha:"2026"}
+    ]
+  }
+};
 
 function mostrar(msg){
- modalText.innerHTML=msg;
- modal.style.display="flex";
- setTimeout(()=>modal.style.display="none",2500);
+  modalText.innerHTML=msg;
+  modal.style.display="flex";
+  setTimeout(()=>modal.style.display="none",2500);
 }
 
 function buscar(){
- const c=curp.value.trim();
- res.innerHTML="";
+  const c=curp.value.trim();
+  res.innerHTML="";
 
- if(c!==c.toUpperCase()){
-   mostrar("La CURP debe escribirse en MAYÚSCULAS");
-   return;
- }
+  if(c!==c.toUpperCase()){
+    mostrar("La CURP debe escribirse en MAYÚSCULAS");
+    return;
+  }
 
- if(c==="BIDD971230HASRZM02"){
-   res.innerHTML=`
-   <div class="resultado">
-     <p><strong>Nombre:</strong> Damián Briones Díaz</p>
-     <p><strong>Email:</strong> damian.brionesdiaz@iea.edu.mx</p>
-     <p><strong>CURP:</strong> ${c}</p>
-     <h4>Certificados Emitidos</h4>
-     <table>
-     <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
-     ${tablaCursos(cursosDamian)}
-     </table>
-   </div>`;
- }
- else if(c==="LOHF890718HSLPRR01"){
-   res.innerHTML=`
-   <div class="resultado">
-     <p><strong>Nombre:</strong> Francisco Antonio López Hernández</p>
-     <p><strong>Email:</strong> pansho_lopez23@hotmail.com</p>
-     <p><strong>CURP:</strong> ${c}</p>
-     <h4>Certificados Emitidos</h4>
-     <table>
-     <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
-     <tr>
-       <td>1</td>
-       <td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td>
-       <td>A9K3QW7X2M</td>
-       <td>19/1/2026</td>
-       <td>310</td>
-     </tr>
-     <tr>
-       <td>2</td>
-       <td>DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td>
-       <td>R5M8ZQ1KLA</td>
-       <td>19/1/2026</td>
-       <td>311</td>
-     </tr>
-     </table>
-   </div>`;
- }
- else{
-   mostrar("CURP no encontrada en la base de datos");
- }
+  if(personas[c]){
+    let filas="";
+    personas[c].cursos.forEach((x,i)=>{
+      filas+=`
+      <tr>
+        <td>${i+1}</td>
+        <td>${x.curso}</td>
+        <td>${x.folio}</td>
+        <td>${x.fecha}</td>
+        <td>${x.id}</td>
+      </tr>`;
+    });
+
+    res.innerHTML=`
+    <div class="resultado">
+      <p><strong>Nombre:</strong> ${personas[c].nombre}</p>
+      <p><strong>Email:</strong> ${personas[c].email}</p>
+      <p><strong>CURP:</strong> ${c}</p>
+
+      <h4>Certificados Emitidos</h4>
+      <table>
+        <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
+        ${filas}
+      </table>
+    </div>`;
+  }else{
+    mostrar("CURP no encontrada en la base de datos");
+  }
 }
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
