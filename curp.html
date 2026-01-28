@@ -113,39 +113,11 @@ td:nth-child(2){
 <h2>Validación por CURP</h2>
 
 <form onsubmit="buscarCURP(); return false;">
-    <input id="curp" placeholder="Escribe tu CURP" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <input id="curp" placeholder="Escribe tu CURP">
     <button>Consultar</button>
 </form>
 
-<div class="info" id="info">
-    <p><strong>Nombre:</strong> Damián Briones Díaz</p>
-    <p><strong>Email:</strong> damian.brionesdiaz@iea.edu.mx</p>
-    <p><strong>CURP:</strong> BIDD971230HASRZM02</p>
-
-    <h3 style="margin-top:20px;">Certificados Emitidos</h3>
-
-    <table>
-        <tr>
-            <th>#</th>
-            <th>Curso</th>
-            <th>Folio</th>
-            <th>Fecha</th>
-            <th>ID Curso</th>
-        </tr>
-        <tr><td>1</td><td>SITUACIÓN LÚDICA PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO</td><td>nNMkrjkBAm</td><td>19/1/2026</td><td>216</td></tr>
-        <tr><td>2</td><td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td><td>HWqcEm7u5D</td><td>19/1/2026</td><td>220</td></tr>
-        <tr><td>3</td><td>DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td><td>6pP8N7hFSb</td><td>19/1/2026</td><td>221</td></tr>
-        <tr><td>4</td><td>LA NUEVA ESCUELA MEXICANA: FUNDAMENTOS, PLANEACIÓN Y EVALUACIÓN</td><td>A1b2C3d4E5</td><td>19/1/2026</td><td>222</td></tr>
-        <tr><td>5</td><td>ENFOQUES DIDÁCTICOS DE LA NUEVA ESCUELA MEXICANA</td><td>F6g7H8i9J0</td><td>19/1/2026</td><td>223</td></tr>
-        <tr><td>6</td><td>PROCESO DE ENSEÑANZA Y APRENDIZAJE DE LA LENGUA INGLESA</td><td>K1L2M3N4O5</td><td>19/1/2026</td><td>224</td></tr>
-        <tr><td>7</td><td>ESTIMULACIÓN TEMPRANA</td><td>Q9R2T7M4XK</td><td>20/1/2026</td><td>225</td></tr>
-        <tr><td>8</td><td>ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA</td><td>L8P0ZK3W1S</td><td>21/1/2026</td><td>226</td></tr>
-        <tr><td>9</td><td>HERRAMIENTAS DIGITALES</td><td>Y7C5A9D2QH</td><td>22/1/2026</td><td>227</td></tr>
-        <tr><td>10</td><td>LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD</td><td>B4N6FJ8R2E</td><td>23/1/2026</td><td>228</td></tr>
-        <tr><td>11</td><td>LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA, DEL LENGUAJE Y DIFICULTADES EN LA COMUNICACIÓN</td><td>M9X2K7WQ4A</td><td>24/1/2026</td><td>229</td></tr>
-        <tr><td>12</td><td>REDACCIÓN DE DOCUMENTOS ACADÉMICOS</td><td>S5H8E2C0YF</td><td>25/1/2026</td><td>230</td></tr>
-    </table>
-</div>
+<div class="info" id="info"></div>
 </div>
 
 <div class="footer">
@@ -154,17 +126,44 @@ td:nth-child(2){
 
 <script>
 function buscarCURP(){
-    const c=document.getElementById("curp").value.trim();
+    const c=document.getElementById("curp").value.trim().toUpperCase();
+    const info=document.getElementById("info");
+
     if(c==="BIDD971230HASRZM02"){
-        document.getElementById("info").style.display="block";
+        info.innerHTML=`
+        <p><strong>Nombre:</strong> Damián Briones Díaz</p>
+        <p><strong>Email:</strong> damian.brionesdiaz@iea.edu.mx</p>
+        <p><strong>CURP:</strong> BIDD971230HASRZM02</p>
+        <h3>Certificados Emitidos</h3>
+        <table>
+        <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
+        <tr><td>1</td><td>DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td><td>6pP8N7hFSb</td><td>19/1/2026</td><td>221</td></tr>
+        <tr><td>2</td><td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td><td>HWqcEm7u5D</td><td>19/1/2026</td><td>220</td></tr>
+        </table>`;
+        info.style.display="block";
+
+    }else if(c==="LOHF890718HSLPRR01"){
+        info.innerHTML=`
+        <p><strong>Nombre:</strong> Francisco Antonio López Hernández</p>
+        <p><strong>Email:</strong> pansho_lopez23@hotmail.com</p>
+        <p><strong>CURP:</strong> LOHF890718HSLPRR01</p>
+        <h3>Certificados Emitidos</h3>
+        <table>
+        <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
+        <tr><td>1</td><td>DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td><td>Z9M4Q2X8KA</td><td>20/1/2026</td><td>301</td></tr>
+        <tr><td>2</td><td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td><td>P7L5A9C2RW</td><td>21/1/2026</td><td>302</td></tr>
+        </table>`;
+        info.style.display="block";
+
     }else{
-        alert("Revise la CURP, no aparece en la base de datos.");
-        document.getElementById("info").style.display="none";
+        alert("CURP no encontrada en la base de datos.");
+        info.style.display="none";
     }
 }
 </script>
 
 </body>
 </html>
+
 
 
