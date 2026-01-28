@@ -27,27 +27,12 @@ body{
   align-items:center;
   gap:18px;
 }
-.header-content img{
-  height:56px;
-}
-.header-text{
-  text-align:center;
-}
-.title{
-  font-size:28px;
-  font-weight:700;
-  color:#0f4c81;
-}
-.subtitle{
-  font-size:15px;
-  color:#1b6ca8;
-}
+.header-content img{ height:56px; }
+.header-text{ text-align:center; }
+.title{ font-size:28px; font-weight:700; color:#0f4c81; }
+.subtitle{ font-size:15px; color:#1b6ca8; }
 
-.main{
-  margin-top:140px;
-  display:flex;
-  justify-content:center;
-}
+.main{ margin-top:140px; display:flex; justify-content:center; }
 .card{
   background:rgba(255,255,255,.18);
   backdrop-filter:blur(12px);
@@ -55,9 +40,7 @@ body{
   padding:30px;
   width:900px;
 }
-.card h3{
-  text-align:center;
-}
+.card h3{ text-align:center; }
 
 input,button{
   width:100%;
@@ -73,10 +56,7 @@ button{
   cursor:pointer;
 }
 
-.resultado{
-  margin-top:20px;
-  text-align:left;
-}
+.resultado{ margin-top:20px; text-align:left; }
 
 table{
   width:100%;
@@ -90,7 +70,6 @@ th,td{
   text-align:left;
 }
 
-/* VENTANA */
 .modal{
   position:fixed;
   inset:0;
@@ -141,45 +120,89 @@ th,td{
 </div>
 
 <script>
-const damianCursos = Array.from({length:12},(_,i)=>`
-<tr>
-<td>${i+1}</td>
-<td>Curso ${i+1} de ejemplo</td>
-<td>FOLIO${i+1}</td>
-<td>2026</td>
-<td>${200+i}</td>
-</tr>`).join("");
+const cursosDamian = [
+ "DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",
+ "LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",
+ "ESTIMULACIÓN TEMPRANA",
+ "ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",
+ "HERRAMIENTAS DIGITALES",
+ "LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD",
+ "LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA",
+ "REDACCIÓN DE DOCUMENTOS ACADÉMICOS",
+ "EVALUACIÓN FORMATIVA",
+ "EDUCACIÓN INCLUSIVA",
+ "DIDÁCTICA DEL ESPAÑOL",
+ "PLANEACIÓN Y EVALUACIÓN EDUCATIVA"
+];
+
+function tablaCursos(cursos){
+ return cursos.map((c,i)=>`
+ <tr>
+   <td>${i+1}</td>
+   <td>${c}</td>
+   <td>${Math.random().toString(36).substring(2,12).toUpperCase()}</td>
+   <td>19/1/2026</td>
+   <td>${200+i}</td>
+ </tr>`).join("");
+}
 
 function mostrar(msg){
-  modalText.innerHTML=msg;
-  modal.style.display="flex";
-  setTimeout(()=>modal.style.display="none",2500);
+ modalText.innerHTML=msg;
+ modal.style.display="flex";
+ setTimeout(()=>modal.style.display="none",2500);
 }
 
 function buscar(){
-  const c=curp.value.trim();
-  res.innerHTML="";
+ const c=curp.value.trim();
+ res.innerHTML="";
 
-  if(c!==c.toUpperCase()){
-    mostrar("La CURP debe escribirse en MAYÚSCULAS");
-    return;
-  }
+ if(c!==c.toUpperCase()){
+   mostrar("La CURP debe escribirse en MAYÚSCULAS");
+   return;
+ }
 
-  if(c==="BIDD971230HASRZM02"){
-    res.innerHTML=`
-    <div class="resultado">
-      <p><strong>Nombre:</strong> Damián Briones Díaz</p>
-      <p><strong>Email:</strong> damian.brionesdiaz@iea.edu.mx</p>
-      <p><strong>CURP:</strong> ${c}</p>
-      <h4>Certificados Emitidos</h4>
-      <table>
-      <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
-      ${damianCursos}
-      </table>
-    </div>`;
-  }else{
-    mostrar("CURP no encontrada en la base de datos");
-  }
+ if(c==="BIDD971230HASRZM02"){
+   res.innerHTML=`
+   <div class="resultado">
+     <p><strong>Nombre:</strong> Damián Briones Díaz</p>
+     <p><strong>Email:</strong> damian.brionesdiaz@iea.edu.mx</p>
+     <p><strong>CURP:</strong> ${c}</p>
+     <h4>Certificados Emitidos</h4>
+     <table>
+     <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
+     ${tablaCursos(cursosDamian)}
+     </table>
+   </div>`;
+ }
+ else if(c==="LOHF890718HSLPRR01"){
+   res.innerHTML=`
+   <div class="resultado">
+     <p><strong>Nombre:</strong> Francisco Antonio López Hernández</p>
+     <p><strong>Email:</strong> pansho_lopez23@hotmail.com</p>
+     <p><strong>CURP:</strong> ${c}</p>
+     <h4>Certificados Emitidos</h4>
+     <table>
+     <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
+     <tr>
+       <td>1</td>
+       <td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td>
+       <td>A9K3QW7X2M</td>
+       <td>19/1/2026</td>
+       <td>310</td>
+     </tr>
+     <tr>
+       <td>2</td>
+       <td>DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td>
+       <td>R5M8ZQ1KLA</td>
+       <td>19/1/2026</td>
+       <td>311</td>
+     </tr>
+     </table>
+   </div>`;
+ }
+ else{
+   mostrar("CURP no encontrada en la base de datos");
+ }
 }
 </script>
 
