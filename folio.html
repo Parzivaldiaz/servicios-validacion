@@ -13,7 +13,6 @@ body{
     background:linear-gradient(135deg,#0f4c81,#1b6ca8);
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items:center;
     color:#fff;
 }
@@ -26,8 +25,6 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    box-shadow:0 4px 25px rgba(0,0,0,.25);
-    z-index:10;
 }
 .header-content{
     display:flex;
@@ -38,7 +35,7 @@ body{
     height:56px;
 }
 .header-text{
-    text-align:center; /* ✅ SOLO AQUÍ */
+    text-align:center;
 }
 .title{
     font-size:30px;
@@ -49,8 +46,6 @@ body{
     font-size:16px;
     color:#1b6ca8;
 }
-
-/* ❌ QUITADO text-align:center */
 .card{
     margin-top:150px;
     background:rgba(255,255,255,.18);
@@ -59,12 +54,9 @@ body{
     padding:30px;
     width:520px;
 }
-
-/* ✅ SOLO EL TÍTULO CENTRADO */
 .card h2{
     text-align:center;
 }
-
 input,button{
     width:100%;
     padding:12px;
@@ -76,21 +68,10 @@ button{
     background:#0f4c81;
     color:#fff;
     font-weight:600;
-    cursor:pointer;
 }
-
-/* ❌ RESULTADO SE QUEDA A LA IZQUIERDA */
 .result{
     display:none;
     margin-top:20px;
-    font-size:15px;
-}
-
-.footer{
-    margin-top:auto;
-    padding:10px;
-    text-align:center;
-    font-size:12px;
 }
 </style>
 </head>
@@ -100,7 +81,7 @@ button{
 <div class="top-bar">
     <div class="header-content">
         <a href="index.html">
-            <img src="https://i.imgur.com/ZXJU2L5.png" alt="Logo">
+            <img src="https://i.imgur.com/ZXJU2L5.png">
         </a>
         <div class="header-text">
             <div class="title">Centro Regional de Educación Normal</div>
@@ -112,41 +93,44 @@ button{
 <div class="card">
 <h2>Validación por Folio</h2>
 
-<form onsubmit="buscarFolio(); return false;">
+<form onsubmit="buscarFolio();return false;">
     <input id="folio" placeholder="Escribe tu Folio">
     <button>Consultar</button>
 </form>
 
 <div class="result" id="res">
-    <p><strong>Nombre completo:</strong> <span id="nombre"></span></p>
+    <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
     <p><strong>Curso:</strong> <span id="curso"></span></p>
 </div>
 </div>
 
-<div class="footer">
-    © 2026 Centro Regional de Educación Normal de Bacalar Quintana Roo. Todos los Derechos Reservados.
-</div>
-
 <script>
-const folios={
- "6pP8N7hFSb":{nombre:"Damián Briones Díaz",curso:"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
- "HWqcEm7u5D":{nombre:"Damián Briones Díaz",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
- "Z9M4Q2X8KA":{nombre:"Francisco Antonio López Hernández",curso:"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
- "P7L5A9C2RW":{nombre:"Francisco Antonio López Hernández",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"}
+/* 
+ÍNDICE DE FOLIOS
+Cada folio apunta a una persona y a un curso específico
+*/
+const folios = {
+  "6pP8N7hFSb": {nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
+  "HWqcEm7u5D": {nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
+  "X9A7Q2L8MZ": {nombre:"Francisco Antonio López Hernández",email:"pansho_lopez23@hotmail.com",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
+  "R4W8C6T9B2": {nombre:"Francisco Antonio López Hernández",email:"pansho_lopez23@hotmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"}
 };
 
 function buscarFolio(){
-    const f=document.getElementById("folio").value.trim();
-    if(folios[f]){
-        document.getElementById("nombre").textContent=folios[f].nombre;
-        document.getElementById("curso").textContent=folios[f].curso;
-        document.getElementById("res").style.display="block";
-    }else{
-        alert("Folio no encontrado.");
-        document.getElementById("res").style.display="none";
-    }
+  const f=folio.value.trim();
+  if(folios[f]){
+    nombre.textContent=folios[f].nombre;
+    email.textContent=folios[f].email;
+    curso.textContent=folios[f].curso;
+    res.style.display="block";
+  }else{
+    alert("Folio no encontrado");
+    res.style.display="none";
+  }
 }
 </script>
 
 </body>
 </html>
+
