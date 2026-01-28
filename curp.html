@@ -7,169 +7,189 @@
 
 <style>
 body{
-    margin:0;
-    min-height:100vh;
-    font-family:"Segoe UI",Arial,sans-serif;
-    background:linear-gradient(135deg,#0f4c81,#1b6ca8);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    color:#fff;
-}
-.top-bar{
-    position:fixed;
-    top:0; left:0;
-    width:100%;
-    height:100px;
-    background:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    box-shadow:0 4px 25px rgba(0,0,0,.25);
-    z-index:10;
-}
-.header-content{
-    display:flex;
-    align-items:center;
-    gap:18px;
-}
-.header-content img{
-    height:56px;
-}
-.title{
-    font-size:30px;
-    font-weight:700;
-    color:#0f4c81;
-}
-.subtitle{
-    font-size:16px;
-    color:#1b6ca8;
-}
-.card{
-    margin-top:150px;
-    background:rgba(255,255,255,.18);
-    backdrop-filter:blur(12px);
-    border-radius:16px;
-    padding:30px;
-    width:700px;
-    text-align:center;
-}
-input,button{
-    width:100%;
-    padding:12px;
-    border-radius:8px;
-    border:none;
-    margin-top:10px;
-}
-button{
-    background:#0f4c81;
-    color:#fff;
-    font-weight:600;
-    cursor:pointer;
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(180deg,#0b3c68,#0e5a8a);
+  color:#fff;
 }
 
-/* 🔴 AQUÍ EL CAMBIO CLAVE */
-.info{
-    margin-top:20px;
-    display:none;
-    font-size:14px;
-    text-align:center;
+header{
+  background:#fff;
+  color:#0b3c68;
+  padding:15px 20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+}
+
+header h1{margin:0;font-size:22px;text-align:center;}
+header h2{margin:0;font-size:14px;color:#1f6fb2;text-align:center;}
+
+.contenedor{
+  display:flex;
+  justify-content:center;
+  padding:40px 15px;
+}
+
+.card{
+  background:rgba(255,255,255,.15);
+  border-radius:10px;
+  padding:25px;
+  max-width:800px;
+  width:100%;
+}
+
+.card h3{text-align:center;margin-top:0;}
+
+input,button{
+  width:100%;
+  padding:10px;
+  border-radius:5px;
+  border:none;
+  font-size:16px;
+}
+
+button{
+  background:#0b3c68;
+  color:#fff;
+  cursor:pointer;
+}
+button:hover{background:#092f52;}
+
+.resultado-datos{
+  text-align:left;
+  margin-top:15px;
+}
+
+.resultado-datos p{
+  margin:4px 0;
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    font-size:13px;
-    text-align:center;
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+  font-size:14px;
 }
+
 th,td{
-    padding:8px;
-    border-bottom:1px solid rgba(255,255,255,.35);
+  border-bottom:1px solid rgba(255,255,255,.3);
+  padding:8px;
+  text-align:left;
 }
-td:nth-child(2){
-    text-align:left;
-}
-.footer{
-    margin-top:auto;
-    padding:10px;
-    text-align:center;
-    font-size:12px;
+
+footer{
+  text-align:center;
+  padding:15px;
+  font-size:13px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="top-bar">
-    <div class="header-content">
-        <a href="index.html">
-            <img src="https://i.imgur.com/ZXJU2L5.png" alt="Logo">
-        </a>
-        <div>
-            <div class="title">Centro Regional de Educación Normal</div>
-            <div class="subtitle">Javier Rojo Gómez</div>
-        </div>
-    </div>
-</div>
+<header>
+  <div>
+    <h1>Centro Regional de Educación Normal</h1>
+    <h2>Javier Rojo Gómez</h2>
+  </div>
+</header>
 
+<div class="contenedor">
 <div class="card">
-<h2>Validación por CURP</h2>
+<h3>Validación por CURP</h3>
 
-<form onsubmit="buscarCURP(); return false;">
-    <input id="curp" placeholder="Escribe tu CURP">
-    <button>Consultar</button>
-</form>
+<input type="text" id="curpInput" placeholder="Ingresa tu CURP">
+<button onclick="buscarCURP()">Consultar</button>
 
-<div class="info" id="info"></div>
+<div id="resultado"></div>
+</div>
 </div>
 
-<div class="footer">
-    © 2026 Centro Regional de Educación Normal de Bacalar Quintana Roo. Todos los Derechos Reservados.
-</div>
+<footer>
+© 2026 Centro Regional de Educación Normal de Bacalar Quintana Roo.
+</footer>
 
 <script>
+const registros = [
+{
+  nombre:"Damián Briones Díaz",
+  email:"damian.brionesdiaz@iea.edu.mx",
+  curp:"BIDD971230HASRZM02",
+  cursos:[
+    {nombre:"ESTIMULACIÓN TEMPRANA",folio:"A9F3K7M2Q1",fecha:"20/01/2026",id:201},
+    {nombre:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",folio:"Q7L2P9A8M4",fecha:"21/01/2026",id:202},
+    {nombre:"HERRAMIENTAS DIGITALES",folio:"M8Q4L2P9A1",fecha:"22/01/2026",id:203},
+    {nombre:"LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD",folio:"P4A9Q1M7L8",fecha:"23/01/2026",id:204},
+    {nombre:"LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA, DEL LENGUAJE Y DIFICULTADES EN LA COMUNICACIÓN",folio:"L9Q8M1A7P4",fecha:"24/01/2026",id:205},
+    {nombre:"REDACCIÓN DE DOCUMENTOS ACADÉMICOS",folio:"Q1P7M8A4L9",fecha:"25/01/2026",id:206},
+    {nombre:"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"6pP8N7hfSb",fecha:"19/01/2026",id:221},
+    {nombre:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"HWqCEm7u5D",fecha:"19/01/2026",id:220},
+    {nombre:"EVALUACIÓN FORMATIVA EN EDUCACIÓN BÁSICA",folio:"M4P8Q7A2L1",fecha:"26/01/2026",id:207},
+    {nombre:"INCLUSIÓN Y EDUCACIÓN ESPECIAL",folio:"Q9L1A8M4P7",fecha:"27/01/2026",id:208},
+    {nombre:"PLANEACIÓN BAJO EL ENFOQUE DE LA NEM",folio:"P7M8Q4L1A9",fecha:"28/01/2026",id:209},
+    {nombre:"GESTIÓN ESCOLAR Y LIDERAZGO DOCENTE",folio:"A4Q9L1P7M8",fecha:"29/01/2026",id:210}
+  ]
+},
+{
+  nombre:"Francisco Antonio López Hernández",
+  email:"pansho_lopez23@hotmail.com",
+  curp:"LOHF890718HSLPRR01",
+  cursos:[
+    {nombre:"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"Z9M4Q2X8KA",fecha:"20/01/2026",id:301},
+    {nombre:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"P7L5A9C2RW",fecha:"21/01/2026",id:302}
+  ]
+}
+];
+
 function buscarCURP(){
-    const c=document.getElementById("curp").value.trim().toUpperCase();
-    const info=document.getElementById("info");
+  const curp=document.getElementById("curpInput").value.trim().toUpperCase();
+  const res=document.getElementById("resultado");
+  res.innerHTML="";
 
-    if(c==="BIDD971230HASRZM02"){
-        info.innerHTML=`
-        <p><strong>Nombre:</strong> Damián Briones Díaz</p>
-        <p><strong>Email:</strong> damian.brionesdiaz@iea.edu.mx</p>
-        <p><strong>CURP:</strong> BIDD971230HASRZM02</p>
-        <h3>Certificados Emitidos</h3>
-        <table>
-        <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
-        <tr><td>1</td><td>DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td><td>6pP8N7hFSb</td><td>19/1/2026</td><td>221</td></tr>
-        <tr><td>2</td><td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td><td>HWqcEm7u5D</td><td>19/1/2026</td><td>220</td></tr>
-        </table>`;
-        info.style.display="block";
+  const persona=registros.find(p=>p.curp===curp);
+  if(!persona){
+    res.innerHTML="<p>No se encontraron registros.</p>";
+    return;
+  }
 
-    }else if(c==="LOHF890718HSLPRR01"){
-        info.innerHTML=`
-        <p><strong>Nombre:</strong> Francisco Antonio López Hernández</p>
-        <p><strong>Email:</strong> pansho_lopez23@hotmail.com</p>
-        <p><strong>CURP:</strong> LOHF890718HSLPRR01</p>
-        <h3>Certificados Emitidos</h3>
-        <table>
-        <tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
-        <tr><td>1</td><td>DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO</td><td>Z9M4Q2X8KA</td><td>20/1/2026</td><td>301</td></tr>
-        <tr><td>2</td><td>LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA</td><td>P7L5A9C2RW</td><td>21/1/2026</td><td>302</td></tr>
-        </table>`;
-        info.style.display="block";
+  let html=`
+  <div class="resultado-datos">
+    <p><strong>Nombre:</strong> ${persona.nombre}</p>
+    <p><strong>Email:</strong> ${persona.email}</p>
+    <p><strong>CURP:</strong> ${persona.curp}</p>
+  </div>
 
-    }else{
-        alert("CURP no encontrada en la base de datos.");
-        info.style.display="none";
-    }
+  <h4>Certificados Emitidos</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Curso</th>
+        <th>Folio</th>
+        <th>Fecha</th>
+        <th>ID</th>
+      </tr>
+    </thead>
+    <tbody>`;
+
+  persona.cursos.forEach((c,i)=>{
+    html+=`
+    <tr>
+      <td>${i+1}</td>
+      <td>${c.nombre}</td>
+      <td>${c.folio}</td>
+      <td>${c.fecha}</td>
+      <td>${c.id}</td>
+    </tr>`;
+  });
+
+  html+=`</tbody></table>`;
+  res.innerHTML=html;
 }
 </script>
 
 </body>
 </html>
-
-
-
 
