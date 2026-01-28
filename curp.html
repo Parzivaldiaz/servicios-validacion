@@ -13,19 +13,31 @@ body{
   color:#fff;
 }
 
+/* ===== ENCABEZADO ===== */
 header{
   background:#fff;
   color:#0b3c68;
   padding:15px 20px;
   display:flex;
   justify-content:center;
-  align-items:center;
-  gap:15px;
 }
 
-header h1{margin:0;font-size:22px;text-align:center;}
-header h2{margin:0;font-size:14px;color:#1f6fb2;text-align:center;}
+header .titulo{
+  text-align:center;
+}
 
+header h1{
+  margin:0;
+  font-size:22px;
+}
+
+header h2{
+  margin:0;
+  font-size:14px;
+  color:#1f6fb2;
+}
+
+/* ===== CONTENEDOR ===== */
 .contenedor{
   display:flex;
   justify-content:center;
@@ -36,12 +48,16 @@ header h2{margin:0;font-size:14px;color:#1f6fb2;text-align:center;}
   background:rgba(255,255,255,.15);
   border-radius:10px;
   padding:25px;
-  max-width:800px;
+  max-width:900px;
   width:100%;
 }
 
-.card h3{text-align:center;margin-top:0;}
+.card h3{
+  text-align:center;
+  margin-top:0;
+}
 
+/* ===== FORM ===== */
 input,button{
   width:100%;
   padding:10px;
@@ -55,21 +71,31 @@ button{
   color:#fff;
   cursor:pointer;
 }
-button:hover{background:#092f52;}
+button:hover{
+  background:#092f52;
+}
 
-.resultado-datos{
+/* ===== RESULTADOS (IZQUIERDA FORZADA) ===== */
+.resultado{
+  margin-top:20px;
   text-align:left;
-  margin-top:15px;
 }
 
-.resultado-datos p{
+.resultado p{
   margin:4px 0;
+  text-align:left;
 }
 
+.resultado h4{
+  margin-top:15px;
+  text-align:left;
+}
+
+/* ===== TABLA ===== */
 table{
   width:100%;
   border-collapse:collapse;
-  margin-top:15px;
+  margin-top:10px;
   font-size:14px;
 }
 
@@ -90,21 +116,21 @@ footer{
 <body>
 
 <header>
-  <div>
+  <div class="titulo">
     <h1>Centro Regional de Educación Normal</h1>
     <h2>Javier Rojo Gómez</h2>
   </div>
 </header>
 
 <div class="contenedor">
-<div class="card">
-<h3>Validación por CURP</h3>
+  <div class="card">
+    <h3>Validación por CURP</h3>
 
-<input type="text" id="curpInput" placeholder="Ingresa tu CURP">
-<button onclick="buscarCURP()">Consultar</button>
+    <input type="text" id="curpInput" placeholder="Ingresa tu CURP">
+    <button onclick="buscarCURP()">Consultar</button>
 
-<div id="resultado"></div>
-</div>
+    <div id="resultado"></div>
+  </div>
 </div>
 
 <footer>
@@ -124,12 +150,12 @@ const registros = [
     {nombre:"LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD",folio:"P4A9Q1M7L8",fecha:"23/01/2026",id:204},
     {nombre:"LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA, DEL LENGUAJE Y DIFICULTADES EN LA COMUNICACIÓN",folio:"L9Q8M1A7P4",fecha:"24/01/2026",id:205},
     {nombre:"REDACCIÓN DE DOCUMENTOS ACADÉMICOS",folio:"Q1P7M8A4L9",fecha:"25/01/2026",id:206},
-    {nombre:"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"6pP8N7hfSb",fecha:"19/01/2026",id:221},
-    {nombre:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"HWqCEm7u5D",fecha:"19/01/2026",id:220},
-    {nombre:"EVALUACIÓN FORMATIVA EN EDUCACIÓN BÁSICA",folio:"M4P8Q7A2L1",fecha:"26/01/2026",id:207},
-    {nombre:"INCLUSIÓN Y EDUCACIÓN ESPECIAL",folio:"Q9L1A8M4P7",fecha:"27/01/2026",id:208},
-    {nombre:"PLANEACIÓN BAJO EL ENFOQUE DE LA NEM",folio:"P7M8Q4L1A9",fecha:"28/01/2026",id:209},
-    {nombre:"GESTIÓN ESCOLAR Y LIDERAZGO DOCENTE",folio:"A4Q9L1P7M8",fecha:"29/01/2026",id:210}
+    {nombre:"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"6pP8N7hfSb",fecha:"19/01/2026",id:207},
+    {nombre:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"HWqCEm7u5D",fecha:"19/01/2026",id:208},
+    {nombre:"EVALUACIÓN FORMATIVA EN EDUCACIÓN BÁSICA",folio:"M4P8Q7A2L1",fecha:"26/01/2026",id:209},
+    {nombre:"INCLUSIÓN Y EDUCACIÓN ESPECIAL",folio:"Q9L1A8M4P7",fecha:"27/01/2026",id:210},
+    {nombre:"PLANEACIÓN BAJO EL ENFOQUE DE LA NEM",folio:"P7M8Q4L1A9",fecha:"28/01/2026",id:211},
+    {nombre:"GESTIÓN ESCOLAR Y LIDERAZGO DOCENTE",folio:"A4Q9L1P7M8",fecha:"29/01/2026",id:212}
   ]
 },
 {
@@ -144,51 +170,58 @@ const registros = [
 ];
 
 function buscarCURP(){
-  const curp=document.getElementById("curpInput").value.trim().toUpperCase();
-  const res=document.getElementById("resultado");
-  res.innerHTML="";
+  const curp = document.getElementById("curpInput").value.trim().toUpperCase();
+  const res = document.getElementById("resultado");
+  res.innerHTML = "";
 
-  const persona=registros.find(p=>p.curp===curp);
+  const persona = registros.find(p => p.curp === curp);
   if(!persona){
-    res.innerHTML="<p>No se encontraron registros.</p>";
+    res.innerHTML = "<p>No se encontraron registros.</p>";
     return;
   }
 
-  let html=`
-  <div class="resultado-datos">
+  let html = `
+  <div class="resultado">
     <p><strong>Nombre:</strong> ${persona.nombre}</p>
     <p><strong>Email:</strong> ${persona.email}</p>
     <p><strong>CURP:</strong> ${persona.curp}</p>
-  </div>
 
-  <h4>Certificados Emitidos</h4>
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Curso</th>
-        <th>Folio</th>
-        <th>Fecha</th>
-        <th>ID</th>
-      </tr>
-    </thead>
-    <tbody>`;
+    <h4>Certificados Emitidos</h4>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Curso</th>
+          <th>Folio</th>
+          <th>Fecha</th>
+          <th>ID</th>
+        </tr>
+      </thead>
+      <tbody>`;
 
   persona.cursos.forEach((c,i)=>{
-    html+=`
-    <tr>
-      <td>${i+1}</td>
-      <td>${c.nombre}</td>
-      <td>${c.folio}</td>
-      <td>${c.fecha}</td>
-      <td>${c.id}</td>
-    </tr>`;
+    html += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${c.nombre}</td>
+        <td>${c.folio}</td>
+        <td>${c.fecha}</td>
+        <td>${c.id}</td>
+      </tr>`;
   });
 
-  html+=`</tbody></table>`;
-  res.innerHTML=html;
+  html += `
+      </tbody>
+    </table>
+  </div>`;
+
+  res.innerHTML = html;
 }
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
