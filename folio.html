@@ -98,12 +98,12 @@ button{
 <h2>Validación por Folio</h2>
 
 <form onsubmit="buscarFolio(); return false;">
-    <input id="folio" placeholder="Escribe tu Folio" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <input id="folio" placeholder="Escribe tu Folio">
     <button>Consultar</button>
 </form>
 
 <div class="result" id="res">
-    <p><strong>Nombre completo:</strong> Damián Briones Díaz</p>
+    <p><strong>Nombre completo:</strong> <span id="nombre"></span></p>
     <p><strong>Curso:</strong> <span id="curso"></span></p>
 </div>
 </div>
@@ -114,27 +114,20 @@ button{
 
 <script>
 const folios={
- "nNMkrjkBAm":"SITUACIÓN LÚDICA PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO",
- "HWqcEm7u5D":"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",
- "6pP8N7hFSb":"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",
- "A1b2C3d4E5":"LA NUEVA ESCUELA MEXICANA: FUNDAMENTOS, PLANEACIÓN Y EVALUACIÓN",
- "F6g7H8i9J0":"ENFOQUES DIDÁCTICOS DE LA NUEVA ESCUELA MEXICANA",
- "K1L2M3N4O5":"PROCESO DE ENSEÑANZA Y APRENDIZAJE DE LA LENGUA INGLESA",
- "Q9R2T7M4XK":"ESTIMULACIÓN TEMPRANA",
- "L8P0ZK3W1S":"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",
- "Y7C5A9D2QH":"HERRAMIENTAS DIGITALES",
- "B4N6FJ8R2E":"LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD",
- "M9X2K7WQ4A":"LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA, DEL LENGUAJE Y DIFICULTADES EN LA COMUNICACIÓN",
- "S5H8E2C0YF":"REDACCIÓN DE DOCUMENTOS ACADÉMICOS"
+ "6pP8N7hFSb":{nombre:"Damián Briones Díaz",curso:"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
+ "HWqcEm7u5D":{nombre:"Damián Briones Díaz",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
+ "Z9M4Q2X8KA":{nombre:"Francisco Antonio López Hernández",curso:"DIPLOMADO EN ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
+ "P7L5A9C2RW":{nombre:"Francisco Antonio López Hernández",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"}
 };
 
 function buscarFolio(){
     const f=document.getElementById("folio").value.trim();
     if(folios[f]){
-        document.getElementById("curso").textContent=folios[f];
+        document.getElementById("nombre").textContent=folios[f].nombre;
+        document.getElementById("curso").textContent=folios[f].curso;
         document.getElementById("res").style.display="block";
     }else{
-        alert("El folio no está registrado en la base de datos.");
+        alert("Folio no encontrado.");
         document.getElementById("res").style.display="none";
     }
 }
@@ -142,3 +135,4 @@ function buscarFolio(){
 
 </body>
 </html>
+
