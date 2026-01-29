@@ -4,133 +4,105 @@
 <meta charset="UTF-8">
 <title>Validación por Folio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body{
-    margin:0;
-    min-height:100vh;
-    font-family:"Segoe UI",Arial,sans-serif;
-    background:linear-gradient(135deg,#0f4c81,#1b6ca8);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    color:#fff;
+margin:0;
+min-height:100vh;
+font-family:"Segoe UI",Arial,sans-serif;
+background:linear-gradient(135deg,#0f4c81,#1b6ca8);
+display:flex;
+flex-direction:column;
+align-items:center;
+color:#fff;
 }
 .top-bar{
-    position:fixed;
-    top:0; left:0;
-    width:100%;
-    height:100px;
-    background:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100px;
+background:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
 }
-.header-content{
-    display:flex;
-    align-items:center;
-    gap:18px;
-}
-.header-content img{
-    height:56px;
-}
-.header-text{
-    text-align:center;
-}
-.title{
-    font-size:30px;
-    font-weight:700;
-    color:#0f4c81;
-}
-.subtitle{
-    font-size:16px;
-    color:#1b6ca8;
-}
+.header-content{display:flex;align-items:center;gap:18px;}
+.header-content img{height:56px;}
+.header-text{text-align:center;}
+.title{font-size:30px;font-weight:700;color:#0f4c81;}
+.subtitle{font-size:16px;color:#1b6ca8;}
 .card{
-    margin-top:150px;
-    background:rgba(255,255,255,.18);
-    backdrop-filter:blur(12px);
-    border-radius:16px;
-    padding:30px;
-    width:520px;
+margin-top:150px;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(12px);
+border-radius:16px;
+padding:30px;
+width:520px;
 }
-.card h2{
-    text-align:center;
-}
+.card h2{text-align:center;}
 input,button{
-    width:100%;
-    padding:12px;
-    border-radius:8px;
-    border:none;
-    margin-top:10px;
+width:100%;
+padding:12px;
+border-radius:8px;
+border:none;
+margin-top:10px;
 }
-button{
-    background:#0f4c81;
-    color:#fff;
-    font-weight:600;
-}
-.result{
-    display:none;
-    margin-top:20px;
-}
+button{background:#0f4c81;color:#fff;font-weight:600;}
+.result{display:none;margin-top:20px;}
 </style>
 </head>
 
 <body>
-
 <div class="top-bar">
-    <div class="header-content">
-        <a href="index.html">
-            <img src="https://i.imgur.com/ZXJU2L5.png">
-        </a>
-        <div class="header-text">
-            <div class="title">Centro Regional de Educación Normal</div>
-            <div class="subtitle">Javier Rojo Gómez</div>
-        </div>
-    </div>
+<div class="header-content">
+<a href="index.html">
+<img src="https://i.imgur.com/ZXJU2L5.png">
+</a>
+<div class="header-text">
+<div class="title">Centro Regional de Educación Normal</div>
+<div class="subtitle">Javier Rojo Gómez</div>
+</div>
+</div>
 </div>
 
 <div class="card">
 <h2>Validación por Folio</h2>
-
 <form onsubmit="buscarFolio();return false;">
-    <input id="folio" placeholder="Escribe tu Folio">
-    <button>Consultar</button>
+<input id="folio" placeholder="Escribe tu Folio">
+<button>Consultar</button>
 </form>
-
 <div class="result" id="res">
-    <p><strong>Nombre:</strong> <span id="nombre"></span></p>
-    <p><strong>Email:</strong> <span id="email"></span></p>
-    <p><strong>Curso:</strong> <span id="curso"></span></p>
+<p><strong>Nombre:</strong> <span id="nombre"></span></p>
+<p><strong>Email:</strong> <span id="email"></span></p>
+<p><strong>Curso:</strong> <span id="curso"></span></p>
 </div>
 </div>
 
 <script>
-/* 
-ÍNDICE DE FOLIOS
-Cada folio apunta a una persona y a un curso específico
-*/
-const folios = {
-  "6pP8N7hFSb": {nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
-  "HWqcEm7u5D": {nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
-  "X9A7Q2L8MZ": {nombre:"Francisco Antonio López Hernández",email:"pansho_lopez23@hotmail.com",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
-  "R4W8C6T9B2": {nombre:"Francisco Antonio López Hernández",email:"pansho_lopez23@hotmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"}
+const folios={
+"G7M2Q9A4LZ":{nombre:"Gregorio Medina Quistian",email:"medinaquistian147@gmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
+"H8R4QZ7M2A":{nombre:"HÉCTOR JESÚS RIVERA ESPINOZA",email:"hectorfisicamyz@gmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
+"D9KQ4Z7M2H":{nombre:"HÉCTOR JESÚS RIVERA ESPINOZA",email:"hectorfisicamyz@gmail.com",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
+"I7Q2MZ4A9L":{nombre:"Irán Jair Núñez Herrera",email:"jairLEF1995@gmail.com",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
+"J4Z9Q7M2AL":{nombre:"Irán Jair Núñez Herrera",email:"jairLEF1995@gmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
+"ING7MZ2Q9A":{nombre:"Irán Jair Núñez Herrera",email:"jairLEF1995@gmail.com",curso:"PROCESO DE ENSEÑANZA Y APRENDIZAJE DE LA LENGUA INGLESA"},
+"MAT9QZ7M2A":{nombre:"Irán Jair Núñez Herrera",email:"jairLEF1995@gmail.com",curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA"}
 };
 
 function buscarFolio(){
-  const f=folio.value.trim();
-  if(folios[f]){
-    nombre.textContent=folios[f].nombre;
-    email.textContent=folios[f].email;
-    curso.textContent=folios[f].curso;
-    res.style.display="block";
-  }else{
-    alert("Folio no encontrado");
-    res.style.display="none";
-  }
+const f=folio.value.trim();
+if(folios[f]){
+nombre.textContent=folios[f].nombre;
+email.textContent=folios[f].email;
+curso.textContent=folios[f].curso;
+res.style.display="block";
+}else{
+alert("Folio no encontrado");
+res.style.display="none";
+}
 }
 </script>
-
 </body>
 </html>
+
 
