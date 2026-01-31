@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Validación por CURP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body{
 margin:0;
@@ -103,70 +104,81 @@ text-align:center;
    BASE DE DATOS PRINCIPAL
    =============================== */
 const personas = {
-  "BIDD971230HASRZM02": {
-    nombre: "Damián Briones Díaz",
-    email: "damian.brionesdiaz@iea.edu.mx",
-    cursos: [
-      {id:201,curso:"PROCESO DE ENSEÑANZA y aprendizaje de la lengua inglesa",folio:"K1L2M3N4O5",fecha:"2026"},
-      {id:202,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"6pP8N7hFSb",fecha:"2026"},
-      {id:203,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"HWqcEm7u5D",fecha:"2026"},
-      {id:204,curso:"SITUACIÓN LÚDICAS PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO",folio:"nNMkrjkBAm",fecha:"2026"},
-      {id:205,curso:"ENFOQUES DIDÁCTICOS DE LA NUEVA ESCUELA MEXICANA",folio:"F6g7H8i9J0",fecha:"2026"},
-      {id:206,curso:"LA NUEVA ESCUELA MEXICANA: FUNDAMENTOS, PLANEACIÓN Y EVALUACIÓN",folio:"A1b2C3d4E5",fecha:"2026"},
-      {id:207,curso:"ESTIMULACIÓN TEMPRANA",folio:"Q9R2T7M4XK",fecha:"2026"},
-      {id:208,curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",folio:"L8P0ZK3W1S",fecha:"2026"},
-      {id:209,curso:"HERRAMIENTAS DIGITALES",folio:"Y7C5A9D2QH",fecha:"2026"},
-      {id:210,curso:"LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD",folio:"B4N6FJ8R2E",fecha:"2026"},
-      {id:211,curso:"LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA, DEL LENGUAJE Y DIFICULTADES EN LA COMUNICACIÓN",folio:"M9X2K7WQ4A",fecha:"2026"},
-      {id:212,curso:"REDACCIÓN DE DOCUMENTOS ACADÉMICOS",folio:"S5H8E2C0YF",fecha:"2026"}
-    ]
-  },
 
-  "LOHF890718HSLPRR01": {
-    nombre: "Francisco Antonio López Hernández",
-    email: "pansho_lopez23@hotmail.com",
-    cursos: [
-      {id:301,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"X9A7Q2L8MZ",fecha:"2026"},
-      {id:302,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"R4W8C6T9B2",fecha:"2026"}
-    ]
-  },
+"BIDD971230HASRZM02":{
+nombre:"Damián Briones Díaz",
+email:"damian.brionesdiaz@iea.edu.mx",
+cursos:[
+{id:201,curso:"PROCESO DE ENSEÑANZA y aprendizaje de la lengua inglesa",folio:"K1L2M3N4O5",fecha:"2026"},
+{id:202,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"6pP8N7hFSb",fecha:"2026"},
+{id:203,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"HWqcEm7u5D",fecha:"2026"},
+{id:204,curso:"SITUACIÓN LÚDICAS PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO",folio:"nNMkrjkBAm",fecha:"2026"},
+{id:205,curso:"ENFOQUES DIDÁCTICOS DE LA NUEVA ESCUELA MEXICANA",folio:"F6g7H8i9J0",fecha:"2026"},
+{id:206,curso:"LA NUEVA ESCUELA MEXICANA: FUNDAMENTOS, PLANEACIÓN Y EVALUACIÓN",folio:"A1b2C3d4E5",fecha:"2026"},
+{id:207,curso:"ESTIMULACIÓN TEMPRANA",folio:"Q9R2T7M4XK",fecha:"2026"},
+{id:208,curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",folio:"L8P0ZK3W1S",fecha:"2026"},
+{id:209,curso:"HERRAMIENTAS DIGITALES",folio:"Y7C5A9D2QH",fecha:"2026"},
+{id:210,curso:"LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD",folio:"B4N6FJ8R2E",fecha:"2026"},
+{id:211,curso:"LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA, DEL LENGUAJE Y DIFICULTADES EN LA COMUNICACIÓN",folio:"M9X2K7WQ4A",fecha:"2026"},
+{id:212,curso:"REDACCIÓN DE DOCUMENTOS ACADÉMICOS",folio:"S5H8E2C0YF",fecha:"2026"}
+]
+},
 
-  "MEQG870521HCLDSR06":{
-    nombre:"Gregorio Medina Quistian",
-    email:"medinaquistian147@gmail.com",
-    cursos:[
-      {id:401,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"G7M2Q9A4LZ",fecha:"2026"}
-    ]
-  },
+"LOHF890718HSLPRR01":{
+nombre:"Francisco Antonio López Hernández",
+email:"pansho_lopez23@hotmail.com",
+cursos:[
+{id:301,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"X9A7Q2L8MZ",fecha:"2026"},
+{id:302,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"R4W8C6T9B2",fecha:"2026"}
+]
+},
 
-  "RIEH930802HHGVSC07":{
-    nombre:"HÉCTOR JESÚS RIVERA ESPINOZA",
-    email:"hectorfisicamyz@gmail.com",
-    cursos:[
-      {id:402,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"H8R4QZ7M2A",fecha:"2026"},
-      {id:403,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"D9KQ4Z7M2H",fecha:"2026"}
-    ]
-  },
+"MEQG870521HCLDSR06":{
+nombre:"Gregorio Medina Quistian",
+email:"medinaquistian147@gmail.com",
+cursos:[
+{id:401,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"G7M2Q9A4LZ",fecha:"2026"}
+]
+},
 
-  "NUHI950520HVZXRR09":{
-    nombre:"Irán Jair Núñez Herrera",
-    email:"jairLEF1995@gmail.com",
-    cursos:[
-      {id:404,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"I7Q2MZ4A9L",fecha:"2026"},
-      {id:405,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"J4Z9Q7M2AL",fecha:"2026"},
-      {id:406,curso:"PROCESO DE ENSEÑANZA Y APRENDIZAJE DE LA LENGUA INGLESA",folio:"ING7MZ2Q9A",fecha:"2026"},
-      {id:407,curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",folio:"MAT9QZ7M2A",fecha:"2026"}
-    ]
-  },
+"RIEH930802HHGVSC07":{
+nombre:"HÉCTOR JESÚS RIVERA ESPINOZA",
+email:"hectorfisicamyz@gmail.com",
+cursos:[
+{id:402,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"H8R4QZ7M2A",fecha:"2026"},
+{id:403,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"D9KQ4Z7M2H",fecha:"2026"}
+]
+},
 
-  "TESP920324HGRSND05":{
-    nombre:"PEDRO TESTA SANTOYO",
-    email:"Edufis_testa@hotmail.com",
-    cursos:[
-      {id:408,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"P3D8R0T5SA",fecha:"2026"},
-      {id:409,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"T9E2S7P4DR",fecha:"2026"}
-    ]
-  }
+"NUHI950520HVZXRR09":{
+nombre:"Irán Jair Núñez Herrera",
+email:"jairLEF1995@gmail.com",
+cursos:[
+{id:404,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"I7Q2MZ4A9L",fecha:"2026"},
+{id:405,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"J4Z9Q7M2AL",fecha:"2026"},
+{id:406,curso:"PROCESO DE ENSEÑANZA Y APRENDIZAJE DE LA LENGUA INGLESA",folio:"ING7MZ2Q9A",fecha:"2026"},
+{id:407,curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",folio:"MAT9QZ7M2A",fecha:"2026"}
+]
+},
+
+"TESP920324HGRSND05":{
+nombre:"PEDRO TESTA SANTOYO",
+email:"Edufis_testa@hotmail.com",
+cursos:[
+{id:408,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"P3D8R0T5SA",fecha:"2026"},
+{id:409,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"T9E2S7P4DR",fecha:"2026"}
+]
+},
+
+/* ✅ SOLO AGREGADO: YESSENIA */
+"AEMY001101MHGNTSA0":{
+nombre:"Yessenia Angeles Mota",
+email:"yesseniamota976@gmail.com",
+cursos:[
+{id:410,curso:"PROCESO DE ENSEÑANZA APRENDIZAJE DE LA LENGUA INGLESA",folio:"Y9E7S3M2A4",fecha:"2026"}
+]
+}
+
 };
 
 function mostrar(msg){
@@ -188,7 +200,7 @@ function buscar(){
   if(personas[c]){
     let filas="";
     personas[c].cursos.forEach((x,i)=>{
-      filas += `
+      filas+=`
       <tr>
         <td>${i+1}</td>
         <td>${x.curso}</td>
@@ -198,7 +210,7 @@ function buscar(){
       </tr>`;
     });
 
-    res.innerHTML = `
+    res.innerHTML=`
     <div class="resultado">
       <p><strong>Nombre:</strong> ${personas[c].nombre}</p>
       <p><strong>Email:</strong> ${personas[c].email}</p>
