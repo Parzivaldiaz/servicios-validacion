@@ -1,3 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Validación por CURP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+font-family:"Segoe UI",Arial,sans-serif;
+background:linear-gradient(135deg,#0f4c81,#1b6ca8);
+color:#fff;
+}
+.top-bar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100px;
+background:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+.header-content{
+display:flex;
+align-items:center;
+gap:18px;
+}
+.header-content img{height:56px;}
+.header-text{text-align:center;}
+.title{font-size:28px;font-weight:700;color:#0f4c81;}
+.subtitle{font-size:15px;color:#1b6ca8;}
+.main{margin-top:140px;display:flex;justify-content:center;}
+.card{
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(12px);
+border-radius:16px;
+padding:30px;
+width:900px;
+}
+.card h3{text-align:center;}
+input,button{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:none;
+margin-top:10px;
+}
+button{background:#0f4c81;color:#fff;font-weight:600;cursor:pointer;}
+.resultado{margin-top:20px;text-align:left;}
+table{width:100%;border-collapse:collapse;margin-top:15px;font-size:13px;}
+th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,.35);text-align:left;}
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.45);
+display:none;
+justify-content:center;
+align-items:center;
+}
+.modal div{
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(12px);
+padding:25px;
+border-radius:12px;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+<div class="top-bar">
+<div class="header-content">
+<a href="index.html">
+<img src="https://i.imgur.com/ZXJU2L5.png">
+</a>
+<div class="header-text">
+<div class="title">Centro Regional de Educación Normal</div>
+<div class="subtitle">Javier Rojo Gómez</div>
+</div>
+</div>
+</div>
+
+<div class="main">
+<div class="card">
+<h3>Validación por CURP</h3>
+<form onsubmit="buscar();return false;">
+<input id="curp" placeholder="Escribe tu CURP">
+<button>Consultar</button>
+</form>
+<div id="res"></div>
+</div>
+</div>
+
+<div class="modal" id="modal">
+<div id="modalText"></div>
+</div>
+
 <script>
 const personas = {
 
@@ -20,7 +120,60 @@ cursos:[
 ]
 },
 
-/* ✅ NUEVO REGISTRO – ANA ALEJANDRA */
+"LOHF890718HSLPRR01":{
+nombre:"Francisco Antonio López Hernández",
+email:"pansho_lopez23@hotmail.com",
+cursos:[
+{id:301,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"X9A7Q2L8MZ",fecha:"2026"},
+{id:302,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"R4W8C6T9B2",fecha:"2026"}
+]
+},
+
+"MEQG870521HCLDSR06":{
+nombre:"Gregorio Medina Quistian",
+email:"medinaquistian147@gmail.com",
+cursos:[
+{id:401,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"G7M2Q9A4LZ",fecha:"2026"}
+]
+},
+
+"RIEH930802HHGVSC07":{
+nombre:"HÉCTOR JESÚS RIVERA ESPINOZA",
+email:"hectorfisicamyz@gmail.com",
+cursos:[
+{id:402,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"H8R4QZ7M2A",fecha:"2026"},
+{id:403,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"D9KQ4Z7M2H",fecha:"2026"}
+]
+},
+
+"NUHI950520HVZXRR09":{
+nombre:"Irán Jair Núñez Herrera",
+email:"jairLEF1995@gmail.com",
+cursos:[
+{id:404,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"I7Q2MZ4A9L",fecha:"2026"},
+{id:405,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"J4Z9Q7M2AL",fecha:"2026"},
+{id:406,curso:"PROCESO DE ENSEÑANZA Y APRENDIZAJE DE LA LENGUA INGLESA",folio:"ING7MZ2Q9A",fecha:"2026"},
+{id:407,curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA",folio:"MAT9QZ7M2A",fecha:"2026"}
+]
+},
+
+"TESP920324HGRSND05":{
+nombre:"PEDRO TESTA SANTOYO",
+email:"Edufis_testa@hotmail.com",
+cursos:[
+{id:408,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"P3D8R0T5SA",fecha:"2026"},
+{id:409,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"T9E2S7P4DR",fecha:"2026"}
+]
+},
+
+"AEMY001101MHGNTSA0":{
+nombre:"Yessenia Angeles Mota",
+email:"yesseniamota976@gmail.com",
+cursos:[
+{id:410,curso:"PROCESO DE ENSEÑANZA APRENDIZAJE DE LA LENGUA INGLESA",folio:"Y9E7S3M2A4",fecha:"2026"}
+]
+},
+
 "AEVA000401MSLRGNA9":{
 nombre:"Ana Alejandra Arellanes Vega",
 email:"ana.alejandra@live.com.mx",
@@ -33,4 +186,52 @@ cursos:[
 }
 
 };
+
+function mostrar(msg){
+modalText.innerHTML=msg;
+modal.style.display="flex";
+setTimeout(()=>modal.style.display="none",2500);
+}
+
+function buscar(){
+const c=document.getElementById("curp").value.trim();
+const res=document.getElementById("res");
+res.innerHTML="";
+
+if(c!==c.toUpperCase()){
+mostrar("La CURP debe escribirse en MAYÚSCULAS");
+return;
+}
+
+if(personas[c]){
+let filas="";
+personas[c].cursos.forEach((x,i)=>{
+filas+=`
+<tr>
+<td>${i+1}</td>
+<td>${x.curso}</td>
+<td>${x.folio}</td>
+<td>${x.fecha}</td>
+<td>${x.id}</td>
+</tr>`;
+});
+
+res.innerHTML=`
+<div class="resultado">
+<p><strong>Nombre:</strong> ${personas[c].nombre}</p>
+<p><strong>Email:</strong> ${personas[c].email}</p>
+<p><strong>CURP:</strong> ${c}</p>
+<h4>Certificados Emitidos</h4>
+<table>
+<tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>
+${filas}
+</table>
+</div>`;
+}else{
+mostrar("CURP no encontrada en la base de datos");
+}
+}
 </script>
+
+</body>
+</html>
