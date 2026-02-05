@@ -7,142 +7,153 @@
 
 <style>
 body{
-margin:0;
-min-height:100vh;
-font-family:"Segoe UI",Arial,sans-serif;
-background:linear-gradient(135deg,#0f4c81,#1b6ca8);
-display:flex;
-flex-direction:column;
-align-items:center;
-color:#fff;
+  margin:0;
+  min-height:100vh;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:linear-gradient(135deg,#0f4c81,#1b6ca8);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  color:#fff;
 }
 .top-bar{
-position:fixed;
-top:0; left:0;
-width:100%;
-height:100px;
-background:#fff;
-display:flex;
-justify-content:center;
-align-items:center;
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100px;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 .header-content{
-display:flex;
-align-items:center;
-gap:18px;
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
-.header-content img{height:56px;}
-.header-text{text-align:center;}
-.title{font-size:30px;font-weight:700;color:#0f4c81;}
-.subtitle{font-size:16px;color:#1b6ca8;}
+.header-content img{
+  height:56px;
+}
+.header-text{
+  text-align:center;
+}
+.title{
+  font-size:30px;
+  font-weight:700;
+  color:#0f4c81;
+}
+.subtitle{
+  font-size:16px;
+  color:#1b6ca8;
+}
 .card{
-margin-top:150px;
-background:rgba(255,255,255,.18);
-backdrop-filter:blur(12px);
-border-radius:16px;
-padding:30px;
-width:520px;
+  margin-top:150px;
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(12px);
+  border-radius:16px;
+  padding:30px;
+  width:520px;
 }
-.card h2{text-align:center;}
+.card h2{
+  text-align:center;
+}
 input,button{
-width:100%;
-padding:12px;
-border-radius:8px;
-border:none;
-margin-top:10px;
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  margin-top:10px;
 }
-button{background:#0f4c81;color:#fff;font-weight:600;}
-.result{display:none;margin-top:20px;}
+button{
+  background:#0f4c81;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+.result{
+  display:none;
+  margin-top:20px;
+}
 </style>
 </head>
 
 <body>
 
 <div class="top-bar">
-<div class="header-content">
-<a href="index.html">
-<img src="https://i.imgur.com/ZXJU2L5.png">
-</a>
-<div class="header-text">
-<div class="title">Centro Regional de Educación Normal</div>
-<div class="subtitle">Javier Rojo Gómez</div>
-</div>
-</div>
+  <div class="header-content">
+    <a href="index.html">
+      <img src="https://i.imgur.com/ZXJU2L5.png">
+    </a>
+    <div class="header-text">
+      <div class="title">Centro Regional de Educación Normal</div>
+      <div class="subtitle">Javier Rojo Gómez</div>
+    </div>
+  </div>
 </div>
 
 <div class="card">
-<h2>Validación por Folio</h2>
+  <h2>Validación por Folio</h2>
 
-<form onsubmit="buscarFolio();return false;">
-<input id="folio" placeholder="Escribe tu Folio">
-<button>Consultar</button>
-</form>
+  <form onsubmit="buscarFolio();return false;">
+    <input id="folio" placeholder="Escribe tu Folio" autocomplete="off">
+    <button>Consultar</button>
+  </form>
 
-<div class="result" id="res">
-<p><strong>Nombre:</strong> <span id="nombre"></span></p>
-<p><strong>Email:</strong> <span id="email"></span></p>
-<p><strong>Curso:</strong> <span id="curso"></span></p>
-</div>
+  <div class="result" id="res">
+    <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Curso:</strong> <span id="curso"></span></p>
+  </div>
 </div>
 
 <script>
 const folios = {
 
-"K1L2M3N4O5":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"PROCESO DE ENSEÑANZA y aprendizaje de la lengua inglesa"},
-"6pP8N7hFSb":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
-"HWqcEm7u5D":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
-"nNMkrjkBAm":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"SITUACIÓN LÚDICAS PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO"},
-"F6g7H8i9J0":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"ENFOQUES DIDÁCTICOS DE LA NUEVA ESCUELA MEXICANA"},
-"A1b2C3d4E5":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LA NUEVA ESCUELA MEXICANA: FUNDAMENTOS, PLANEACIÓN Y EVALUACIÓN"},
-"Q9R2T7M4XK":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"ESTIMULACIÓN TEMPRANA"},
-"L8P0ZK3W1S":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA"},
-"Y7C5A9D2QH":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"HERRAMIENTAS DIGITALES"},
-"B4N6FJ8R2E":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD"},
-"M9X2K7WQ4A":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA, DEL LENGUAJE Y DIFICULTADES EN LA COMUNICACIÓN"},
-"S5H8E2C0YF":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"REDACCIÓN DE DOCUMENTOS ACADÉMICOS"},
+  /* ===================== DAMIÁN ===================== */
+  "K1L2M3N4O5":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"PROCESO DE ENSEÑANZA y aprendizaje de la lengua inglesa"},
+  "6PP8N7HFSB":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
+  "HWQCEM7U5D":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
+  "NNMKRJKBAM":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"SITUACIÓN LÚDICAS PARA EL DESARROLLO DEL PENSAMIENTO MATEMÁTICO"},
+  "F6G7H8I9J0":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"ENFOQUES DIDÁCTICOS DE LA NUEVA ESCUELA MEXICANA"},
+  "A1B2C3D4E5":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LA NUEVA ESCUELA MEXICANA: FUNDAMENTOS, PLANEACIÓN Y EVALUACIÓN"},
+  "Q9R2T7M4XK":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"ESTIMULACIÓN TEMPRANA"},
+  "L8P0ZK3W1S":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA"},
+  "Y7C5A9D2QH":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"HERRAMIENTAS DIGITALES"},
+  "B4N6FJ8R2E":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LA PLANEACIÓN DIDÁCTICA PARA LA ATENCIÓN A LA DIVERSIDAD"},
+  "M9X2K7WQ4A":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"LOGOPEDIA, UNA ESTRATEGIA DE INTERVENCIÓN PARA LOS TRASTORNOS DEL HABLA, DEL LENGUAJE Y DIFICULTADES EN LA COMUNICACIÓN"},
+  "S5H8E2C0YF":{nombre:"Damián Briones Díaz",email:"damian.brionesdiaz@iea.edu.mx",curso:"REDACCIÓN DE DOCUMENTOS ACADÉMICOS"},
 
-"X9A7Q2L8MZ":{nombre:"Francisco Antonio López Hernández",email:"pansho_lopez23@hotmail.com",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
-"R4W8C6T9B2":{nombre:"Francisco Antonio López Hernández",email:"pansho_lopez23@hotmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
-
-"G7M2Q9A4LZ":{nombre:"Gregorio Medina Quistian",email:"medinaquistian147@gmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
-
-"H8R4QZ7M2A":{nombre:"HÉCTOR JESÚS RIVERA ESPINOZA",email:"hectorfisicamyz@gmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
-"D9KQ4Z7M2H":{nombre:"HÉCTOR JESÚS RIVERA ESPINOZA",email:"hectorfisicamyz@gmail.com",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
-
-"I7Q2MZ4A9L":{nombre:"Irán Jair Núñez Herrera",email:"jairLEF1995@gmail.com",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
-"J4Z9Q7M2AL":{nombre:"Irán Jair Núñez Herrera",email:"jairLEF1995@gmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
-"ING7MZ2Q9A":{nombre:"Irán Jair Núñez Herrera",email:"jairLEF1995@gmail.com",curso:"PROCESO DE ENSEÑANZA Y APRENDIZAJE DE LA LENGUA INGLESA"},
-"MAT9QZ7M2A":{nombre:"Irán Jair Núñez Herrera",email:"jairLEF1995@gmail.com",curso:"ESTRATEGIAS PARA LA ENSEÑANZA DE LAS MATEMÁTICAS EN EDUCACIÓN BÁSICA"},
-
-"P3D8R0T5SA":{nombre:"PEDRO TESTA SANTOYO",email:"Edufis_testa@hotmail.com",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
-"T9E2S7P4DR":{nombre:"PEDRO TESTA SANTOYO",email:"Edufis_testa@hotmail.com",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
-
-"Y9E7S3M2A4":{nombre:"Yessenia Angeles Mota",email:"yesseniamota976@gmail.com",curso:"PROCESO DE ENSEÑANZA APRENDIZAJE DE LA LENGUA INGLESA"},
-
-"AL9T2Q7M4X":{nombre:"Ana Alejandra Arellanes Vega",email:"ana.alejandra@live.com.mx",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"},
-"EN5D8F3K9A":{nombre:"Ana Alejandra Arellanes Vega",email:"ana.alejandra@live.com.mx",curso:"ENFOQUES DIDÁCTICOS DE LA NUEVA ESCUELA MEXICANA"},
-"AD7M4P2X9L":{nombre:"Ana Alejandra Arellanes Vega",email:"ana.alejandra@live.com.mx",curso:"ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
-"PI8Q6L3M2Z":{nombre:"Ana Alejandra Arellanes Vega",email:"ana.alejandra@live.com.mx",curso:"PROCESOS DE ENSEÑANZA Y APRENDIZAJE DE LA LENGUA INGLESA"},
-
-/* ✅ NUEVOS FOLIOS – LUZ ESTELA */
-"LE9Q2M7X4A":{nombre:"Luz Estela Ovando Vargas",email:"luzestelaovandovargas@gmail.con",curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"},
-"LT4M8Q2Z9S":{nombre:"Luz Estela Ovando Vargas",email:"luzestelaovandovargas@gmail.con",curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"}
+  /* ===================== LUZ ESTELA ===================== */
+  "LE9Q2M7X4A":{
+    nombre:"Luz Estela Ovando Vargas",
+    email:"luzestelaovandovargas@gmail.con",
+    curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO"
+  },
+  "LT4M8Q2Z9S":{
+    nombre:"Luz Estela Ovando Vargas",
+    email:"luzestelaovandovargas@gmail.con",
+    curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA"
+  }
 
 };
 
 function buscarFolio(){
-const f=document.getElementById("folio").value.trim();
-const res=document.getElementById("res");
+  const f = document.getElementById("folio").value
+            .trim()
+            .toUpperCase()
+            .replace(/\s+/g,"");
 
-if(folios[f]){
-document.getElementById("nombre").textContent=folios[f].nombre;
-document.getElementById("email").textContent=folios[f].email;
-document.getElementById("curso").textContent=folios[f].curso;
-res.style.display="block";
-}else{
-alert("Folio no encontrado");
-res.style.display="none";
-}
+  const res = document.getElementById("res");
+
+  if(folios[f]){
+    document.getElementById("nombre").textContent = folios[f].nombre;
+    document.getElementById("email").textContent  = folios[f].email;
+    document.getElementById("curso").textContent  = folios[f].curso;
+    res.style.display = "block";
+  }else{
+    alert("Folio no encontrado");
+    res.style.display = "none";
+  }
 }
 </script>
 
