@@ -117,4 +117,96 @@ const personas = {
   email:"Edufis_testa@hotmail.com",
   cursos:[
     {id:408,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"P3D8R0T5SA",fecha:"2026"},
-    {id:409,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NU
+    {id:409,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"T9E2S7P4DR",fecha:"2026"}
+  ]
+},
+
+/* ===== YESSENIA ===== */
+"AEMY001101MHGNTSA0":{
+  nombre:"Yessenia Angeles Mota",
+  email:"yesseniamota976@gmail.com",
+  cursos:[
+    {id:410,curso:"PROCESO DE ENSEÑANZA APRENDIZAJE DE LA LENGUA INGLESA",folio:"Y9E7S3M2A4",fecha:"2026"}
+  ]
+},
+
+/* ===== ANA ===== */
+"AEVA000401MSLRGNA9":{
+  nombre:"Ana Alejandra Arellanes Vega",
+  email:"ana.alejandra@live.com.mx",
+  cursos:[
+    {id:501,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"AL9T2Q7M4X",fecha:"2026"},
+    {id:502,curso:"ENFOQUES DIDÁCTICOS DE LA NUEVA ESCUELA MEXICANA",folio:"EN5D8F3K9A",fecha:"2026"},
+    {id:503,curso:"ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"AD7M4P2X9L",fecha:"2026"},
+    {id:504,curso:"PROCESOS DE ENSEÑANZA Y APRENDIZAJE DE LA LENGUA INGLESA",folio:"PI8Q6L3M2Z",fecha:"2026"}
+  ]
+},
+
+/* ===== LUZ ESTELA ===== */
+"OAVL030819MTSVRZA5":{
+  nombre:"Luz Estela Ovando Vargas",
+  email:"luzestelaovandovargas@gmail.com",
+  cursos:[
+    {id:505,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"LE9Q2M7X4A",fecha:"2026"},
+    {id:506,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"LT4M8Q2Z9S",fecha:"2026"}
+  ]
+},
+
+/* ===== LEONEL ===== */
+"SACL890802HCSNRN06":{
+  nombre:"Leonel Santiago Carpio",
+  email:"modulo.soyalo@gmail.com",
+  cursos:[
+    {id:601,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"L9X4Q2M7A8",fecha:"2026"},
+    {id:602,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"D8M2Q7L9XA",fecha:"2026"}
+  ]
+},
+
+/* ===== YAMILA ===== */
+"MARY910522MZSRMM03":{
+  nombre:"Yamila Juliana Martínez Román",
+  email:"yamilajulianamartinezroman@gmail.com",
+  cursos:[
+    {id:701,curso:"ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"YAM5Q8L9D2",fecha:"2026"},
+    {id:702,curso:"PROCESO DE ENSEÑANZA y aprendizaje de la lengua inglesa",folio:"YAM7E2P9KX",fecha:"2026"},
+    {id:703,curso:"HERRAMIENTAS DIGITALES",folio:"YAM4H8D6QZ",fecha:"2026"}
+  ]
+},
+
+/* ===== SAMUEL ===== */
+"MIRS971226HGRRYM08":{
+  nombre:"Samuel Miranda Royin",
+  email:"samuelmirandaroyin2@gmail.com",
+  cursos:[
+    {id:801,curso:"DIPLOMADO ACTUALIZACIÓN DOCENTE AFÍN AL NUEVO SISTEMA EDUCATIVO MEXICANO",folio:"SMR8Q2L7XA",fecha:"2026"},
+    {id:802,curso:"LIBROS DE TEXTO EN EL MARCO DE LA NUEVA ESCUELA MEXICANA. CARACTERÍSTICAS Y METODOLOGÍA",folio:"SMR4D9P6KT",fecha:"2026"}
+  ]
+}
+
+};
+
+function mostrar(msg){
+  modalText.innerHTML=msg;
+  modal.style.display="flex";
+  setTimeout(()=>modal.style.display="none",2500);
+}
+
+function buscar(){
+  const c=curp.value.trim();
+  if(c!==c.toUpperCase()){mostrar("La CURP debe escribirse en MAYÚSCULAS");return;}
+  if(personas[c]){
+    let filas="";
+    personas[c].cursos.forEach((x,i)=>{
+      filas+=`<tr><td>${i+1}</td><td>${x.curso}</td><td>${x.folio}</td><td>${x.fecha}</td><td>${x.id}</td></tr>`;
+    });
+    res.innerHTML=`<p><strong>Nombre:</strong> ${personas[c].nombre}</p>
+    <p><strong>Email:</strong> ${personas[c].email}</p>
+    <p><strong>CURP:</strong> ${c}</p>
+    <table><tr><th>#</th><th>Curso</th><th>Folio</th><th>Fecha</th><th>ID</th></tr>${filas}</table>`;
+  }else{
+    mostrar("CURP no encontrada en la base de datos");
+  }
+}
+</script>
+</body>
+</html>
